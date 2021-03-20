@@ -1,0 +1,8 @@
+C:\Users\Laptop\source\repos\RealEstatePropertyAds\RealEstates.Models\bin\Debug\netcoreapp3.1\RealEstates.Models.deps.json
+C:\Users\Laptop\source\repos\RealEstatePropertyAds\RealEstates.Models\bin\Debug\netcoreapp3.1\RealEstates.Models.dll
+C:\Users\Laptop\source\repos\RealEstatePropertyAds\RealEstates.Models\bin\Debug\netcoreapp3.1\RealEstates.Models.pdb
+C:\Users\Laptop\source\repos\RealEstatePropertyAds\RealEstates.Models\obj\Debug\netcoreapp3.1\RealEstates.Models.csprojAssemblyReference.cache
+C:\Users\Laptop\source\repos\RealEstatePropertyAds\RealEstates.Models\obj\Debug\netcoreapp3.1\RealEstates.Models.AssemblyInfoInputs.cache
+C:\Users\Laptop\source\repos\RealEstatePropertyAds\RealEstates.Models\obj\Debug\netcoreapp3.1\RealEstates.Models.AssemblyInfo.cs
+C:\Users\Laptop\source\repos\RealEstatePropertyAds\RealEstates.Models\obj\Debug\netcoreapp3.1\RealEstates.Models.dll
+C:\Users\Laptop\source\repos\RealEstatePropertyAds\RealEstates.Models\obj\Debug\netcoreapp3.1\RealEstates.Models.pdb

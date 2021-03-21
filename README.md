@@ -1,2 +1,2 @@
 # SoftUni
-SoftUni tasks and exercises
+SoftUni tasks, exercises and demo projects. 

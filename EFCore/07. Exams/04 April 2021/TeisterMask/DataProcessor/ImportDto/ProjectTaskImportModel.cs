@@ -21,7 +21,7 @@ namespace TeisterMask.DataProcessor.ImportDto
         [MinLength(2)]
         [MaxLength(40)]
         public string Name { get; set; }
-        
+
         [Required]
         [XmlElement]
         public string OpenDate { get; set; }
@@ -61,11 +61,13 @@ namespace TeisterMask.DataProcessor.ImportDto
         public string DueDate { get; set; }
 
         [XmlElement]
+        [Range(0, 3)]
         [EnumDataType(typeof(ExecutionType))]
-        public string ExecutionType { get; set; }
+        public int ExecutionType { get; set; }
 
         [XmlElement]
+        [Range(0, 4)]
         [EnumDataType(typeof(LabelType))]
-        public string LabelType { get; set; }
+        public int LabelType { get; set; }
     }
 }

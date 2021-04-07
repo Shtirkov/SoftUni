@@ -20,7 +20,7 @@ namespace TeisterMask.DataProcessor.ImportDto
         public string Username { get; set; }
 
         [Required]
-        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]

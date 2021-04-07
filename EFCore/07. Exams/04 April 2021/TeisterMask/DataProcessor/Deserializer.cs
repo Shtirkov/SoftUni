@@ -25,70 +25,92 @@
         private const string SuccessfullyImportedEmployee
             = "Successfully imported employee - {0} with {1} tasks.";
 
+
+
         public static string ImportProjects(TeisterMaskContext context, string xmlString)
         {
+           
             var sb = new StringBuilder();
             var projects = XmlConverter.Deserializer<ProjectTaskImportModel>(xmlString, "Projects");
+            var projectsToAdd = new List<Project>();
 
             foreach (var currentProject in projects)
             {
-                var isValidOpenDateForProject = DateTime.TryParseExact(currentProject.OpenDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var openDateForProject);
-                var isValidDueDateForProject = DateTime.TryParseExact(currentProject.DueDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var result);
-                DateTime? dueDateForProject = result;
+                var isValidOpenDate = DateTime.TryParseExact(currentProject.OpenDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var openDate);
 
-                if (!isValidDueDateForProject)
-                {
-                    dueDateForProject = null;
-                }
-
-
-                if (!IsValid(currentProject) || !IsValid(isValidOpenDateForProject))// || !IsValid(isValidDueDateForProject))
+                if (!IsValid(currentProject) || !IsValid(isValidOpenDate))
                 {
                     sb.AppendLine(ErrorMessage);
                     continue;
                 }
 
-                var project =
-                  context.Projects
-                  .FirstOrDefault(p => p.Name == currentProject.Name) ??
-                   new Project
-                   {
-                       Name = currentProject.Name,
-                       OpenDate = openDateForProject,
-                       DueDate = dueDateForProject
-                   };
-
-                context.Projects.Add(project);
-                context.SaveChanges();
-
-                foreach (var task in currentProject.Tasks)
+                DateTime? dueDate;
+                if (!String.IsNullOrEmpty(currentProject.DueDate))
                 {
-                    var isValidOpenDateForTask = DateTime.TryParseExact(task.OpenDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var openDateForTask);
-                    var isValidDueDateForTask = DateTime.TryParseExact(task.DueDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var dueDateForTask);
+                    var isValidDueDate = DateTime.TryParseExact(currentProject.DueDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var projectDueDate);
 
-                    if (!IsValid(task) || openDateForTask < openDateForProject || dueDateForTask > dueDateForProject)
+                    if (!isValidDueDate)
                     {
                         sb.AppendLine(ErrorMessage);
                         continue;
                     }
 
-                    var validTask = new Task
-                    {
-                        Name = task.Name,
-                        OpenDate = openDateForTask,
-                        DueDate = dueDateForTask,
-                        ExecutionType = Enum.Parse<ExecutionType>(task.ExecutionType),
-                        LabelType = Enum.Parse<LabelType>(task.LabelType)
-                    };
-
-                    context.Tasks
-                        .Add(validTask);
-
-                    project.Tasks.Add(validTask);
+                    dueDate = projectDueDate;
+                }
+                else
+                {
+                    dueDate = null;
                 }
 
+                var project = new Project
+                {
+                    Name = currentProject.Name,
+                    OpenDate = openDate,
+                    DueDate = dueDate
+                };
+
+               // context.Projects.Add(project);
+                //context.SaveChanges();
+
+                var tasks = currentProject.Tasks;
+
+                foreach (var currentTask in tasks)
+                {
+                    var isValidTaskOpenDate = DateTime.TryParseExact(currentTask.OpenDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var taskOpenDate);
+                    var isValidTaskDueDate = DateTime.TryParseExact(currentTask.DueDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var taskDueDate);
+
+                    if (!IsValid(currentTask) || !isValidTaskOpenDate || !isValidTaskDueDate || taskOpenDate < project.OpenDate)
+                    {
+                        sb.AppendLine(ErrorMessage);
+                        continue;
+                    }
+
+                    if (project.DueDate.HasValue)
+                    {
+                        if (project.DueDate.Value < taskDueDate)
+                        {
+                            sb.AppendLine(ErrorMessage);
+                            continue;
+                        }
+                    }
+
+                    var task = new Task
+                    {
+                        Name = currentTask.Name,
+                        OpenDate = taskOpenDate,
+                        DueDate = taskDueDate,
+                        ExecutionType = (ExecutionType)currentTask.ExecutionType,
+                        LabelType = (LabelType)currentTask.LabelType
+                    };
+
+                    //context.Tasks.Add(task);
+                    project.Tasks.Add(task);                    
+                }
+                projectsToAdd.Add(project);
                 sb.AppendLine($"Successfully imported project - {project.Name} with {project.Tasks.Count} tasks.");
             }
+            context.Projects.AddRange(projectsToAdd);
+            context.SaveChanges();
             return sb.ToString().TrimEnd();
         }
 
@@ -99,9 +121,9 @@
             var employees =
                 JsonConvert.DeserializeObject<ICollection<EmployeeTaskImportModel>>(jsonString);
 
-            foreach (var currentEmployee in employees)
+            foreach (var emp in employees)
             {
-                if (!IsValid(currentEmployee))
+                if (!IsValid(emp))
                 {
                     sb.AppendLine(ErrorMessage);
                     continue;
@@ -109,40 +131,38 @@
 
                 var employee = new Employee
                 {
-                    Username = currentEmployee.Username,
-                    Email = currentEmployee.Email,
-                    Phone = currentEmployee.Phone
+                    Username = emp.Username,
+                    Email = emp.Email,
+                    Phone = emp.Phone
                 };
 
                 context.Employees.Add(employee);
-                context.SaveChanges();
 
-                var taskIds =
-                    context.Tasks.Select(t => t.Id)
-                    .ToList();
+                var empTasks = emp.Tasks.Distinct();
 
-                var uniqueTasks = currentEmployee.Tasks.Distinct();
-
-                foreach (var currentTask in uniqueTasks)
+                foreach (var t in empTasks)
                 {
-                    if (!taskIds.Contains(currentTask))
+                    var task = context.Tasks.FirstOrDefault(x => x.Id == t);
+
+                    if (task == null)
                     {
                         sb.AppendLine(ErrorMessage);
                         continue;
                     }
 
-                    var employeeTask = new EmployeeTask
+                    var actualTask = new EmployeeTask
                     {
-                        TaskId = currentTask,
-                        EmployeeId = employee.Id
+                        EmployeeId = employee.Id,
+                        TaskId = task.Id
                     };
 
-                    employee.EmployeesTasks.Add(employeeTask);
-
+                    employee.EmployeesTasks.Add(actualTask);
+                    context.SaveChanges();
                 }
-                sb.AppendLine($"Successfully imported employee - {employee.Username} with {employee.EmployeesTasks.Count} tasks.");
 
+                sb.AppendLine($"Successfully imported employee - {employee.Username} with {employee.EmployeesTasks.Count} tasks.");
             }
+
             return sb.ToString().TrimEnd();
         }
 

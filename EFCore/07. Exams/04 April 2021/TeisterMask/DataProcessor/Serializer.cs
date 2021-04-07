@@ -42,36 +42,35 @@
 
         public static string ExportMostBusiestEmployees(TeisterMaskContext context, DateTime date)
         {
-
             var employees =
                 context.Employees
-                .Where(e => e.EmployeesTasks.Where(t => t.Task.OpenDate >= date).Count() > 0)
+                .Where(e => e.EmployeesTasks.Where(t => t.Task.OpenDate >= date).Any())
                 .ToList()
                 .Select(e => new
                 {
                     Username = e.Username,
                     Tasks = e.EmployeesTasks
-                         .Where(t => t.Task.OpenDate >= date)
-                         .Select(t => new
-                         {
-                             TaskName = t.Task.Name,
-                             OpenDate = t.Task.OpenDate.ToString("d", CultureInfo.InvariantCulture),
-                             DueDate = t.Task.DueDate.ToString("d", CultureInfo.InvariantCulture),
-                             LabelType = Enum.GetName(typeof(LabelType), t.Task.LabelType),
-                             ExecutionType = Enum.GetName(typeof(ExecutionType), t.Task.ExecutionType),
-
-                         })
-                    .OrderByDescending(t => t.DueDate)
-                    .ThenBy(t => t.TaskName)
+                    .Where(t => t.Task.OpenDate >= date)
+                     .OrderByDescending(t => t.Task.DueDate)
+                    .ThenBy(t => t.Task.Name)
                     .ToList()
+                    .Select(t => new
+                    {
+                        TaskName = t.Task.Name,
+                        OpenDate = t.Task.OpenDate.ToString("D", CultureInfo.InvariantCulture),
+                        DueDate = t.Task.DueDate.ToString("D", CultureInfo.InvariantCulture),
+                        LabelType = Enum.GetName(typeof(LabelType), t.Task.LabelType),
+                        ExecutionType = Enum.GetName(typeof(ExecutionType), t.Task.ExecutionType)
+                    })
+                   
                 })
-                .OrderByDescending(e => e.Tasks.Count)
+                .OrderByDescending(e => e.Tasks.Count())
                 .ThenBy(e => e.Username)
-                .Take(10);
+                .Take(10)
+                .ToList();
+                
 
-            var respond = JsonConvert.SerializeObject(employees, Formatting.Indented);
-
-            return respond;
+            return JsonConvert.SerializeObject(employees, Formatting.Indented);
         }
     }
 }

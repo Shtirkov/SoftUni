@@ -24,10 +24,12 @@
                     TasksCount = x.Tasks.Count,
                     ProjectName = x.Name,
                     HasEndDate = x.DueDate.HasValue ? "Yes" : "No",
-                    Tasks = x.Tasks.Select(t => new TaskExportModel
+                    Tasks = x.Tasks
+                    .ToArray()
+                    .Select(t => new TaskExportModel
                     {
                         Name = t.Name,
-                        Label = Enum.GetName(typeof(LabelType), t.LabelType),
+                        Label = t.LabelType.ToString(),
                     })
                     .OrderBy(t => t.Name)
                     .ToArray()
@@ -50,25 +52,26 @@
                 {
                     Username = e.Username,
                     Tasks = e.EmployeesTasks
-                    .Where(t => t.Task.OpenDate >= date)
-                     .OrderByDescending(t => t.Task.DueDate)
-                    .ThenBy(t => t.Task.Name)
+                        .ToList()
+                        .Where(t => t.Task.OpenDate >= date)
+                        .OrderByDescending(t => t.Task.DueDate)
+                        .ThenBy(t => t.Task.Name)
                     .ToList()
                     .Select(t => new
                     {
                         TaskName = t.Task.Name,
-                        OpenDate = t.Task.OpenDate.ToString("D", CultureInfo.InvariantCulture),
-                        DueDate = t.Task.DueDate.ToString("D", CultureInfo.InvariantCulture),
-                        LabelType = Enum.GetName(typeof(LabelType), t.Task.LabelType),
-                        ExecutionType = Enum.GetName(typeof(ExecutionType), t.Task.ExecutionType)
+                        OpenDate = t.Task.OpenDate.ToString("d", CultureInfo.InvariantCulture),
+                        DueDate = t.Task.DueDate.ToString("d", CultureInfo.InvariantCulture),
+                        LabelType = t.Task.LabelType.ToString(),
+                        ExecutionType = t.Task.ExecutionType.ToString()
                     })
-                   
+
                 })
                 .OrderByDescending(e => e.Tasks.Count())
                 .ThenBy(e => e.Username)
                 .Take(10)
                 .ToList();
-                
+
 
             return JsonConvert.SerializeObject(employees, Formatting.Indented);
         }

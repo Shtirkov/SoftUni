@@ -1,6 +1,7 @@
 ﻿namespace SharedTrip.Models.Trips
 {
     using System;
+    using System.Globalization;
 
     public class TripDetailsViewModel
     {
@@ -12,7 +13,10 @@
 
         public string EndPoint { get; set; }
 
-        public string DepartureTime { get; set; }
+        public DateTime DepartureTime { get; set; }
+
+        public string DepartureTimeAsString
+            => this.DepartureTime.ToString("s");
 
         public int AvailableSeats { get; set; }
 

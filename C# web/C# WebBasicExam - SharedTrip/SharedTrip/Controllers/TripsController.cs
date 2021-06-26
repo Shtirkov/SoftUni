@@ -7,6 +7,7 @@
     using SharedTrip.Models.Trips;
     using SharedTrip.Services;
     using System;
+    using System.Globalization;
     using System.Linq;
 
     public class TripsController : Controller
@@ -78,7 +79,7 @@
                 .Select(t => new TripDetailsViewModel
                 {
                     Id = tripId,
-                    DepartureTime = t.DepartureTime.ToString("dd.MM.yyyy HH:mm"),
+                    DepartureTime = t.DepartureTime,
                     Description = t.Description,
                     EndPoint = t.EndPoint,                   
                     ImagePath = t.ImagePath,

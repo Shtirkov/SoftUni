@@ -12,7 +12,7 @@ function create(words) {
   }
 
   function onClick(ev){
-   const div = ev.target;
+   const div = ev.currentTarget;
    const paragraph = div.children[0];
    paragraph.style.display = '';
   }

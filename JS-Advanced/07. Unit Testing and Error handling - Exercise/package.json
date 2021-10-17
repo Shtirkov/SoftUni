@@ -4,7 +4,7 @@
   "description": "",
   "main": "requestValidator.js",
   "scripts": {
-    "test": "mocha 03.Char-Lookup/charLookup.test.js"
+    "test": "mocha 04.Math-Enforcer/mathEnforcer.test.js"
   },
   "author": "",
   "license": "ISC",

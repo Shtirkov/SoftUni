@@ -1,0 +1,15 @@
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\bin\Debug\net6.0\10.Crossroads.exe
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\bin\Debug\net6.0\10.Crossroads.deps.json
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\bin\Debug\net6.0\10.Crossroads.runtimeconfig.json
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\bin\Debug\net6.0\10.Crossroads.dll
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\bin\Debug\net6.0\10.Crossroads.pdb
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\obj\Debug\net6.0\10.Crossroads.csproj.AssemblyReference.cache
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\obj\Debug\net6.0\10.Crossroads.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\obj\Debug\net6.0\10.Crossroads.AssemblyInfoInputs.cache
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\obj\Debug\net6.0\10.Crossroads.AssemblyInfo.cs
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\obj\Debug\net6.0\10.Crossroads.csproj.CoreCompileInputs.cache
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\obj\Debug\net6.0\10.Crossroads.dll
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\obj\Debug\net6.0\refint\10.Crossroads.dll
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\obj\Debug\net6.0\10.Crossroads.pdb
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\obj\Debug\net6.0\10.Crossroads.genruntimeconfig.cache
+C:\Code\SoftUni\C#Advanced-And-OOP-2.0\Exercises\StacksAndQueues\10.Crossroads\obj\Debug\net6.0\ref\10.Crossroads.dll

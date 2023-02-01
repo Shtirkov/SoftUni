@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncapsulationExercise", "EncapsulationExercise\EncapsulationExercise.csproj", "{316A8C04-9612-4DA7-B809-05A095C93B0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.ShoppingSpree", "03.Shopping Spree\03.ShoppingSpree.csproj", "{B1EDD34D-BFC9-4FD2-9620-E617FED6C2E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{316A8C04-9612-4DA7-B809-05A095C93B0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{316A8C04-9612-4DA7-B809-05A095C93B0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{316A8C04-9612-4DA7-B809-05A095C93B0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{316A8C04-9612-4DA7-B809-05A095C93B0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1EDD34D-BFC9-4FD2-9620-E617FED6C2E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1EDD34D-BFC9-4FD2-9620-E617FED6C2E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1EDD34D-BFC9-4FD2-9620-E617FED6C2E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1EDD34D-BFC9-4FD2-9620-E617FED6C2E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {52943A73-5EB0-42A2-A9D1-620006FE45D1}
+	EndGlobalSection
+EndGlobal

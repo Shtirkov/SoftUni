@@ -20,14 +20,7 @@
             var ninethSubSquareValue = 0;
             var biggestSquareSum = int.MinValue;
 
-            for (int row = 0; row < rows; row++)
-            {               
-                var input = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
-                for (int col = 0; col < cols; col++)
-                {
-                    matrix[row, col] = input[col];
-                }
-            }
+            FillMatrix(matrix);
             
             for (int row = 0; row < rows - 2; row++)
             {
@@ -57,6 +50,19 @@
             Console.WriteLine($"{firstSubSquareValue} {secondSubSquareValue} {thirdSubSquareValue}");
             Console.WriteLine($"{fourthSubSquareValue} {fifthSubSquareValue} {sixthSubSquareValue}");
             Console.WriteLine($"{seventhSubSquareValue} {eighthSubSquareValue} {ninethSubSquareValue}");
+        }
+
+        private static void FillMatrix(int[,] matrix)
+        {
+            for (int row = 0; row < matrix.GetLength(0); row++)
+            {
+                var input = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+
+                for (int col = 0; col < matrix.GetLength(1); col++)
+                {
+                    matrix[row, col] = input[col];
+                }
+            }
         }
     }
 }

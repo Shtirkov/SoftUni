@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.DiagonalDifference", "01.DiagonalDifference\01.DiagonalDifference.csproj", "{D60E3DDD-EA2B-42E8-9A64-A2562C21E120}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.DiagonalDifference", "01.DiagonalDifference\01.DiagonalDifference.csproj", "{D60E3DDD-EA2B-42E8-9A64-A2562C21E120}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.SquaresInMatrix", "02.SquaresInMatrix\02.SquaresInMatrix.csproj", "{54818393-91BF-4FA1-9CBD-622AB78C8964}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.SquaresInMatrix", "02.SquaresInMatrix\02.SquaresInMatrix.csproj", "{54818393-91BF-4FA1-9CBD-622AB78C8964}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.MaximalSum", "03.MaximalSum\03.MaximalSum.csproj", "{7631E2D6-4D69-4ECB-81A7-E646CC594F1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.MaximalSum", "03.MaximalSum\03.MaximalSum.csproj", "{7631E2D6-4D69-4ECB-81A7-E646CC594F1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.MatrixShuffling", "04.MatrixShuffling\04.MatrixShuffling.csproj", "{3926D244-A90B-4F34-8F64-9BC060EF1CD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.MatrixShuffling", "04.MatrixShuffling\04.MatrixShuffling.csproj", "{3926D244-A90B-4F34-8F64-9BC060EF1CD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.SnakeMoves", "05.SnakeMoves\05.SnakeMoves.csproj", "{772E2CAD-6175-4455-9B22-E7F75FDC5CDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{3926D244-A90B-4F34-8F64-9BC060EF1CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3926D244-A90B-4F34-8F64-9BC060EF1CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3926D244-A90B-4F34-8F64-9BC060EF1CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{772E2CAD-6175-4455-9B22-E7F75FDC5CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{772E2CAD-6175-4455-9B22-E7F75FDC5CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{772E2CAD-6175-4455-9B22-E7F75FDC5CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{772E2CAD-6175-4455-9B22-E7F75FDC5CDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

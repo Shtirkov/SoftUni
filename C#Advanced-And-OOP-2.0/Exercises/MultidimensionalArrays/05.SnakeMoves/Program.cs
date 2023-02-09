@@ -27,7 +27,7 @@
                         snake = snake.Substring(1) + snake[0];
                     }
                 }
-                Enumerable.Range(0, cols).Select(e => matrix[row, e]).ToList().ForEach(e => Console.Write(e));
+                Enumerable.Range(0, cols).Select(col => matrix[row, col]).ToList().ForEach(e => Console.Write(e));
                 Console.WriteLine();
             }
         }

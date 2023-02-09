@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.MatrixShuffling", "04.Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.SnakeMoves", "05.SnakeMoves\05.SnakeMoves.csproj", "{772E2CAD-6175-4455-9B22-E7F75FDC5CDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.JaggedArrayManipulator", "06.JaggedArrayManipulator\06.JaggedArrayManipulator.csproj", "{19CFF0C2-FCC9-4C45-92AC-3F7691F33FED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{772E2CAD-6175-4455-9B22-E7F75FDC5CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{772E2CAD-6175-4455-9B22-E7F75FDC5CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{772E2CAD-6175-4455-9B22-E7F75FDC5CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19CFF0C2-FCC9-4C45-92AC-3F7691F33FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19CFF0C2-FCC9-4C45-92AC-3F7691F33FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19CFF0C2-FCC9-4C45-92AC-3F7691F33FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19CFF0C2-FCC9-4C45-92AC-3F7691F33FED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

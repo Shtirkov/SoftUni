@@ -96,7 +96,7 @@ namespace _06.JaggedArrayManipulator
             {
                 return false;
             }
-            else if (int.Parse(input[1]) > matrix.Length)
+            else if (int.Parse(input[1]) > matrix.Length - 1)
             {
                 return false;
             }
@@ -104,9 +104,8 @@ namespace _06.JaggedArrayManipulator
             {
                 return false;
             }
-            else if (int.Parse(input[2]) > matrix[int.Parse(input[1])].Length)
+            else if (int.Parse(input[2]) > matrix[int.Parse(input[1])].Length - 1)
             {
-                var test = matrix[int.Parse(input[1])].Length;
                 return false;
             }
             else if (int.Parse(input[2]) < 0)

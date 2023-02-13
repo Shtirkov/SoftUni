@@ -9,7 +9,7 @@ namespace _07.KnightGame
             var chessBoardSize = int.Parse(Console.ReadLine());
             var chessBoard = new char[chessBoardSize, chessBoardSize];
             FillMatrix(chessBoard);
-            Console.WriteLine(KillKnights(chessBoard, 0));
+            Console.WriteLine(CalculateTotalKilledKnights(chessBoard));
         }
 
         private static void FillMatrix(char[,] matrix)
@@ -32,66 +32,77 @@ namespace _07.KnightGame
                 col > matrix.GetUpperBound(1)) return false;
             return true;
         }
-        private static int KillKnights(char[,] chessBoard, int killedKnights)
+        private static int CalculateTotalKilledKnights(char[,] chessBoard)
         {
-            for (int row = 0; row < chessBoard.GetLength(0); row++)
+            var mostKillsByKnight = 0;
+            var mostDangerousKnightRowIndex = 0;
+            var mostDangerousKnightColIndex = 0;
+            var totalKilledKnigts = 0;
+
+            while (true)
             {
-                for (int col = 0; col < chessBoard.GetLength(1); col++)
+                for (int row = 0; row < chessBoard.GetLength(0); row++)
                 {
-                    if (chessBoard[row, col] == 'K')
+                    for (int col = 0; col < chessBoard.GetLength(1); col++)
                     {
-                        if (IsInChessBoardBounds(chessBoard, row + 1, col + 2) && chessBoard[row + 1, col + 2] == 'K')
+                        if (chessBoard[row, col] == 'K')
                         {
-                            killedKnights++;
-                            chessBoard[row + 1, col + 2] = '0';
-                        }
+                            var currentKnightKills = CalculateCurrentKnightPotentialKills(chessBoard, row, col);
 
-                        if (IsInChessBoardBounds(chessBoard, row + 1, col - 2) && chessBoard[row + 1, col - 2] == 'K')
-                        {
-                            killedKnights++;
-                            chessBoard[row + 1, col - 2] = '0';
-                        }
-
-                        if (IsInChessBoardBounds(chessBoard, row + 2, col + 1) && chessBoard[row + 2, col + 1] == 'K')
-                        {
-                            killedKnights++;
-                            chessBoard[row + 2, col + 1] = '0';
-                        }
-
-                        if (IsInChessBoardBounds(chessBoard, row + 2, col - 1) && chessBoard[row + 2, col - 1] == 'K')
-                        {
-                            killedKnights++;
-                            chessBoard[row + 2, col - 1] = '0';
-                        }
-
-                        if (IsInChessBoardBounds(chessBoard, row - 1, col + 2) && chessBoard[row - 1, col + 2] == 'K')
-                        {
-                            killedKnights++;
-                            chessBoard[row - 1, col + 2] = '0';
-                        }
-
-                        if (IsInChessBoardBounds(chessBoard, row - 1, col - 2) && chessBoard[row - 1, col - 2] == 'K')
-                        {
-                            killedKnights++;
-                            chessBoard[row - 1, col - 2] = '0';
-                        }
-
-                        if (IsInChessBoardBounds(chessBoard, row - 2, col + 1) && chessBoard[row - 2, col + 1] == 'K')
-                        {
-                            killedKnights++;
-                            chessBoard[row - 2, col + 1] = '0';
-                        }
-
-                        if (IsInChessBoardBounds(chessBoard, row - 2, col - 1) && chessBoard[row - 2, col - 1] == 'K')
-                        {
-                            killedKnights++;
-                            chessBoard[row - 2, col - 1] = '0';
+                            if (currentKnightKills > mostKillsByKnight)
+                            {
+                                mostKillsByKnight = currentKnightKills;
+                                mostDangerousKnightRowIndex = row;
+                                mostDangerousKnightColIndex = col;
+                            }
                         }
                     }
                 }
-            }
 
-            return killedKnights;
+                if (mostKillsByKnight > 0)
+                {
+                    chessBoard[mostDangerousKnightRowIndex, mostDangerousKnightColIndex] = '0';
+                    mostKillsByKnight = 0;
+                    mostDangerousKnightRowIndex = 0;
+                    mostDangerousKnightColIndex = 0;
+                    totalKilledKnigts++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return totalKilledKnigts;
+        }
+        private static int CalculateCurrentKnightPotentialKills(char[,] chessBoard, int row, int col)
+        {
+            var currentKnightKills = 0;
+
+            if (IsInChessBoardBounds(chessBoard, row + 1, col + 2) && chessBoard[row + 1, col + 2] == 'K')
+                currentKnightKills++;
+
+            if (IsInChessBoardBounds(chessBoard, row + 1, col - 2) && chessBoard[row + 1, col - 2] == 'K')
+                currentKnightKills++;
+
+            if (IsInChessBoardBounds(chessBoard, row + 2, col + 1) && chessBoard[row + 2, col + 1] == 'K')
+                currentKnightKills++;
+
+            if (IsInChessBoardBounds(chessBoard, row + 2, col - 1) && chessBoard[row + 2, col - 1] == 'K')
+                currentKnightKills++;
+
+            if (IsInChessBoardBounds(chessBoard, row - 1, col + 2) && chessBoard[row - 1, col + 2] == 'K')
+                currentKnightKills++;
+
+            if (IsInChessBoardBounds(chessBoard, row - 1, col - 2) && chessBoard[row - 1, col - 2] == 'K')
+                currentKnightKills++;
+
+            if (IsInChessBoardBounds(chessBoard, row - 2, col + 1) && chessBoard[row - 2, col + 1] == 'K')
+                currentKnightKills++;
+
+            if (IsInChessBoardBounds(chessBoard, row - 2, col - 1) && chessBoard[row - 2, col - 1] == 'K')
+                currentKnightKills++;
+
+            return currentKnightKills;
         }
     }
 }

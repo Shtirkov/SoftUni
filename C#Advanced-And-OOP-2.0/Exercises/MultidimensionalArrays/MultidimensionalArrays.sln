@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.JaggedArrayManipulator",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07.KnightGame", "07.KnightGame\07.KnightGame.csproj", "{057B55A0-EC51-4285-9A6E-F6C05BE5B2F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08.Bombs", "08.Bombs\08.Bombs.csproj", "{C43824DA-0C2D-40BB-AD2A-4CF099297CAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08.Bombs", "08.Bombs\08.Bombs.csproj", "{C43824DA-0C2D-40BB-AD2A-4CF099297CAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09.Miner", "09.Miner\09.Miner.csproj", "{B06A3DE0-379A-4DAD-99FC-9CDEF23CFC69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{C43824DA-0C2D-40BB-AD2A-4CF099297CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C43824DA-0C2D-40BB-AD2A-4CF099297CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C43824DA-0C2D-40BB-AD2A-4CF099297CAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B06A3DE0-379A-4DAD-99FC-9CDEF23CFC69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B06A3DE0-379A-4DAD-99FC-9CDEF23CFC69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B06A3DE0-379A-4DAD-99FC-9CDEF23CFC69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B06A3DE0-379A-4DAD-99FC-9CDEF23CFC69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

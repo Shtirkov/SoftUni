@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-
+﻿using System.Text;
 namespace _10.RadioactiveMutantVampireBunnies
 {
     internal class Program
@@ -13,15 +12,16 @@ namespace _10.RadioactiveMutantVampireBunnies
             PrepareTheField(field);
             var directions = Console.ReadLine().ToCharArray();
             var queuedDirections = new Queue<char>(directions);
+            var finalResult = new StringBuilder();
 
             while (!IsTheGameOver(field))
             {
                 var currentDirection = queuedDirections.Dequeue();
-                MovePlayer(field, currentDirection);
-                field = ModifyTheFieldWithNewBunniesPositions(field);
+                MovePlayer(field, currentDirection, finalResult);
+                field = ModifyTheFieldWithNewBunniesPositions(field, finalResult);
             }
-
             PrintFieldState(field);
+            Console.WriteLine(finalResult.ToString());
         }
 
         private static void PrepareTheField(char[][] field)
@@ -53,7 +53,7 @@ namespace _10.RadioactiveMutantVampireBunnies
                 return false;
             return true;
         }
-        private static void MovePlayer(char[][] field, char direction)
+        private static void MovePlayer(char[][] field, char direction, StringBuilder sb)
         {
             for (int row = 0; row < field.Length; row++)
             {
@@ -68,16 +68,19 @@ namespace _10.RadioactiveMutantVampireBunnies
                                 {
                                     field[row - 1][col] = 'P';
                                     field[row][col] = '.';
+                                    return;
                                 }
                                 else if (ValidateMovement(field, row - 1, col) && field[row - 1][col] == 'B')
                                 {
                                     field[row][col] = '.';
-                                    Console.WriteLine($"dead: {row - 1} {col}");
+                                    sb.AppendLine($"dead: {row - 1} {col}");
+                                    return;
                                 }
                                 else if (!ValidateMovement(field, row - 1, col))
                                 {
                                     field[row][col] = '.';
-                                    Console.WriteLine($"won: {row} {col}");
+                                    sb.AppendLine($"won: {row} {col}");
+                                    return;
                                 }
                                 break;
                             case 'D':
@@ -85,16 +88,19 @@ namespace _10.RadioactiveMutantVampireBunnies
                                 {
                                     field[row + 1][col] = 'P';
                                     field[row][col] = '.';
+                                    return;
                                 }
                                 else if (ValidateMovement(field, row + 1, col) && field[row + 1][col] == 'B')
                                 {
                                     field[row][col] = '.';
-                                    Console.WriteLine($"dead: {row + 1} {col}");
+                                    sb.AppendLine($"dead: {row + 1} {col}");
+                                    return;
                                 }
                                 else if (!ValidateMovement(field, row + 1, col))
                                 {
                                     field[row][col] = '.';
-                                    Console.WriteLine($"won: {row} {col}");
+                                    sb.AppendLine($"won: {row} {col}");
+                                    return;
                                 }
                                 break;
                             case 'L':
@@ -102,16 +108,19 @@ namespace _10.RadioactiveMutantVampireBunnies
                                 {
                                     field[row][col - 1] = 'P';
                                     field[row][col] = '.';
+                                    return;
                                 }
                                 else if (ValidateMovement(field, row, col - 1) && field[row][col - 1] == 'B')
                                 {
                                     field[row][col] = '.';
-                                    Console.WriteLine($"dead: {row} {col - 1}");
+                                    sb.AppendLine($"dead: {row} {col - 1}");
+                                    return;
                                 }
                                 else if (!ValidateMovement(field, row, col - 1))
                                 {
                                     field[row][col] = '.';
-                                    Console.WriteLine($"won: {row} {col}");
+                                    sb.AppendLine($"won: {row} {col}");
+                                    return;
                                 }
                                 break;
                             case 'R':
@@ -119,16 +128,19 @@ namespace _10.RadioactiveMutantVampireBunnies
                                 {
                                     field[row][col + 1] = 'P';
                                     field[row][col] = '.';
+                                    return;
                                 }
                                 else if (ValidateMovement(field, row, col + 1) && field[row][col + 1] == 'B')
                                 {
                                     field[row][col] = '.';
-                                    Console.WriteLine($"dead: {row} {col + 1}");
+                                    sb.AppendLine($"dead: {row} {col + 1}");
+                                    return;
                                 }
                                 else if (!ValidateMovement(field, row, col + 1))
                                 {
                                     field[row][col] = '.';
-                                    Console.WriteLine($"won: {row} {col}");
+                                    sb.AppendLine($"won: {row} {col}");
+                                    return;
                                 }
                                 break;
                         }
@@ -136,7 +148,7 @@ namespace _10.RadioactiveMutantVampireBunnies
                 }
             }
         }
-        private static char[][] ModifyTheFieldWithNewBunniesPositions(char[][] field)
+        private static char[][] ModifyTheFieldWithNewBunniesPositions(char[][] field, StringBuilder sb)
         {
             var modifiedField = CopyArray(field);
             for (int row = 0; row < field.Length; row++)
@@ -152,9 +164,9 @@ namespace _10.RadioactiveMutantVampireBunnies
                         else if (ValidateMovement(field, row - 1, col) && field[row - 1][col] == 'P')
                         {
                             modifiedField[row - 1][col] = 'B';
-                            if (!IsTheGameOver(field))
+                            if (!IsTheGameOver(field) && string.IsNullOrEmpty(sb.ToString()))
                             {
-                                Console.WriteLine($"dead: {row - 1} {col}");
+                                sb.AppendLine($"dead: {row - 1} {col}");
                             }
                         }
                         if (ValidateMovement(field, row + 1, col) && field[row + 1][col] != 'P')
@@ -164,9 +176,9 @@ namespace _10.RadioactiveMutantVampireBunnies
                         else if (ValidateMovement(field, row + 1, col) && field[row + 1][col] == 'P')
                         {
                             modifiedField[row + 1][col] = 'B';
-                            if (!IsTheGameOver(field))
+                            if (!IsTheGameOver(field) && string.IsNullOrEmpty(sb.ToString()))
                             {
-                                Console.WriteLine($"dead: {row + 1} {col}");
+                                sb.AppendLine($"dead: {row + 1} {col}");
                             }
                         }
                         if (ValidateMovement(field, row, col - 1) && field[row][col - 1] != 'P')
@@ -176,9 +188,9 @@ namespace _10.RadioactiveMutantVampireBunnies
                         else if (ValidateMovement(field, row, col - 1) && field[row][col - 1] == 'P')
                         {
                             modifiedField[row][col - 1] = 'B';
-                            if (!IsTheGameOver(field))
+                            if (!IsTheGameOver(field) && string.IsNullOrEmpty(sb.ToString()))
                             {
-                                Console.WriteLine($"dead: {row} {col - 1}");
+                                sb.AppendLine($"dead: {row} {col - 1}");
                             }
                         }
                         if (ValidateMovement(field, row, col + 1) && field[row][col + 1] != 'P')
@@ -188,9 +200,9 @@ namespace _10.RadioactiveMutantVampireBunnies
                         else if (ValidateMovement(field, row, col + 1) && field[row][col + 1] == 'P')
                         {
                             modifiedField[row][col + 1] = 'B';
-                            if (!IsTheGameOver(field))
+                            if (!IsTheGameOver(field) && string.IsNullOrEmpty(sb.ToString()))
                             {
-                                Console.WriteLine($"dead: {row} {col + 1}");
+                                sb.AppendLine($"dead: {row} {col + 1}");
                             }
                         }
                     }
@@ -203,7 +215,7 @@ namespace _10.RadioactiveMutantVampireBunnies
             for (int row = 0; row < field.Length; row++)
             {
                 if (field[row].Contains('P'))
-                    return false;                
+                    return false;
             }
             return true;
         }

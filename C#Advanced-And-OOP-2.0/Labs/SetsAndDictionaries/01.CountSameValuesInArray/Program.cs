@@ -15,7 +15,9 @@
             });
 
             foreach (var pair in numbersDictionary)
+            {
                 Console.WriteLine($"{pair.Key} - {pair.Value} times");
+            }
         }
     }
 }

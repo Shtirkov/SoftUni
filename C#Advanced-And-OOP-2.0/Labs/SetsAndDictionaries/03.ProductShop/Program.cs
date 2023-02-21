@@ -13,7 +13,7 @@ namespace _03.ProductShop
 
             while (input != "Revision")
             {
-                var shop = input.Split(' ')[0];
+                var shop = input.Split()[0];
                 var product = input.Split()[1];
                 var price = input.Split()[2];
 

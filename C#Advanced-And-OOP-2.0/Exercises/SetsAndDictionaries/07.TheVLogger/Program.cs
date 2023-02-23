@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 
 namespace _07.TheVLogger
 {
@@ -7,31 +8,34 @@ namespace _07.TheVLogger
         static void Main(string[] args)
         {
             var input = Console.ReadLine();
-            var vloggersDictionary = new Dictionary<string, Dictionary<string,string>>();
+            var vloggersDictionary = new Dictionary<string, Dictionary<string, List<string>>>();
 
             while (input != "Statistics")
             {
                 var inputArray = input.Split();
                 var vlogger = inputArray[0];
                 var command = inputArray[1];
-               
+
                 switch (command)
                 {
                     case "joined":
                         if (!vloggersDictionary.ContainsKey(vlogger))
                         {
-                            vloggersDictionary.Add(vlogger, new Dictionary<string, string>());
+                            vloggersDictionary.Add(vlogger, new Dictionary<string, List<string>>());
+                            vloggersDictionary[vlogger].Add("Followers", new List<string>());
+                            vloggersDictionary[vlogger].Add("Following", new List<string>());
                         }
                         break;
                     case "followed":
                         var vloggerToFollow = inputArray[2];
-                       
+
                         if (vlogger != vloggerToFollow &&
                             vloggersDictionary.ContainsKey(vlogger) &&
                             vloggersDictionary.ContainsKey(vloggerToFollow) &&
-                            vloggersDictionary[vlogger].Values.Contains(vloggerToFollow))
+                            !vloggersDictionary[vlogger]["Following"].Contains(vloggerToFollow))
                         {
-                            
+                            vloggersDictionary[vlogger]["Following"].Add(vloggerToFollow);
+                            vloggersDictionary[vloggerToFollow]["Followers"].Add(vlogger);
                         }
                         break;
                 }
@@ -39,19 +43,32 @@ namespace _07.TheVLogger
                 input = Console.ReadLine();
             }
 
-            Console.WriteLine($"The V-Logger has a titak if {vloggersDictionary.Keys.Count} vloggers in its logs.");
-            var iterator = 1;
-            foreach (var vlogger in vloggersDictionary)
-            {
-                var output = new StringBuilder();
-                output.Append($"{iterator}. {vlogger.Key}: ");
+            var sortedVloggersDictionary = vloggersDictionary
+                .OrderByDescending(x => x.Value["Followers"].Count)
+                .ThenBy(x => x.Value["Following"].Count)
+                .ToDictionary(x => x.Key, y => y.Value);
 
-                foreach (var item in vlogger.Value)
+            var iterator = 1;
+            var firstVloggerFollowersPrinted = false;
+
+            Console.WriteLine($"The V-Logger has a total of {vloggersDictionary.Keys.Count} vloggers in its logs.");
+            foreach (var vlogger in sortedVloggersDictionary)
+            {
+                vlogger.Value["Followers"].Sort();
+                var output = new StringBuilder();
+                output.AppendLine($"{iterator}. {vlogger.Key} : {vlogger.Value["Followers"].Count} followers, {vlogger.Value["Following"].Count} following");
+
+                if (!firstVloggerFollowersPrinted)
                 {
-                    output.Append($"{item.Key} followers, {item.Value} following");
-                }
+                    foreach (var item in vlogger.Value["Followers"])
+                    {
+                        output.AppendLine($"*  {item}");
+                    }
+                } 
+                
+                firstVloggerFollowersPrinted = true;
                 iterator++;
-                Console.WriteLine(output.ToString());
+                Console.Write(output.ToString());
             }
         }
     }

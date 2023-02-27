@@ -4,17 +4,15 @@
     {
         static void Main(string[] args)
         {
-            using (var reader = new StreamReader("../../../input.txt"))
-            {
-                var splittedInput = reader.ReadToEnd().Split(Environment.NewLine);
+            using var reader = new StreamReader("../../../input.txt");
+            var splittedInput = reader.ReadToEnd().Split(Environment.NewLine);
 
-                for (int i = 0; i < splittedInput.Length; i++)
+            for (int i = 0; i < splittedInput.Length; i++)
+            {
+                if (i % 2 == 1)
                 {
-                    if (i % 2 == 1)
-                    {
-                        Console.WriteLine(splittedInput[i]);
-                    }
-                }                
+                    Console.WriteLine(splittedInput[i]);
+                }
             }
         }
     }

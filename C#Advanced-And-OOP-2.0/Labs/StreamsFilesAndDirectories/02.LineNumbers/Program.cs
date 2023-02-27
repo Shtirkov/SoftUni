@@ -12,8 +12,6 @@
             {
                 writer.WriteLine($"{i + 1}. {splittedInput[i]}");
             }
-
         }
     }
-}
 }

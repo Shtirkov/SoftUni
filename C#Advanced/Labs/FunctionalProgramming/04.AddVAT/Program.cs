@@ -1,6 +1,4 @@
-﻿using System.Threading.Channels;
-
-namespace _04.AddVAT
+﻿namespace _04.AddVAT
 {
     internal class Program
     {

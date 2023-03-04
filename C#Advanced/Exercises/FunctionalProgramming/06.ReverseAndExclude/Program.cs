@@ -11,8 +11,8 @@
 
             var divider = int.Parse(Console.ReadLine());
 
-            Func<List<int>, List<int>> getAllDivisable = GetAllDivisable(numbers, divider);
-            numbers = getAllDivisable(numbers);
+            Func<List<int>,int, List<int>> getAllDivisable = GetAllDivisable(numbers, divider);
+            numbers = getAllDivisable(numbers,divider);
             Func<List<int>, List<int>> reverse = Reverse(numbers);
             numbers = reverse(numbers);
             Console.WriteLine(string.Join(" ", numbers));
@@ -28,9 +28,9 @@
             return func;
         }
 
-        private static Func<List<int>, List<int>> GetAllDivisable(List<int> numbers, int divider)
+        private static Func<List<int>,int, List<int>> GetAllDivisable(List<int> numbers, int divider)
         {
-            Func<List<int>, List<int>> func = (List) =>
+            Func<List<int>,int, List<int>> func = (List, divider) =>
             {
                 return numbers = numbers.Where(x => x % divider != 0).ToList();
             };

@@ -18,11 +18,11 @@
                 if (nextOperation == "print")
                 {
                     Action<List<int>> printer = PrintResult(numbers);
-                    printer.Invoke(numbers);
+                    printer(numbers);
                 }
                 else
                 {
-                    numbers = operation.Invoke(numbers);
+                    numbers = operation(numbers);
                 }
                 nextOperation = Console.ReadLine();
                 operation = PerformOperation(numbers, nextOperation);
@@ -33,9 +33,9 @@
         {
             switch (operation)
             {
-                case "add": return func => numbers.Select(x => x + 1).ToList();
-                case "subtract": return func => numbers.Select(x => x - 1).ToList();
-                case "multiply": return func => numbers.Select(x => x * 2).ToList();
+                case "add": return numbers => numbers.Select(x => x + 1).ToList();
+                case "subtract": return numbers => numbers.Select(x => x - 1).ToList();
+                case "multiply": return numbers => numbers.Select(x => x * 2).ToList();
                 default:
                     return null;
             }

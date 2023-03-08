@@ -4,15 +4,17 @@
     {
         static void Main(string[] args)
         {
-            var make = Console.ReadLine();
-            var model = Console.ReadLine();
-            var year = int.Parse(Console.ReadLine());
-            var fuelQuantity = double.Parse(Console.ReadLine());
-            var fuelConsumption = double.Parse(Console.ReadLine());
+            var tires = new Tire[4]
+            {
+                new Tire(1, 2.5),
+                new Tire(1, 2.5),
+                new Tire(1, 2.5),
+                new Tire(1, 2.5),
+            };
 
-            var firstCar = new Car();
-            var secondCar = new Car(make, model, year);
-            var thirdCar = new Car(make,model,year, fuelQuantity, fuelConsumption);
+            var engine = new Engine(500, 6300);
+
+            var car = new Car("Mercedes", "S63 AMG", 2023, 300, 15, engine, tires);
         }
     }
 }

@@ -49,7 +49,7 @@
 
         public void Drive(double distance)
         {
-            var requiredFuelForTheTrip = distance * FuelConsumption;
+            var requiredFuelForTheTrip = distance * FuelConsumption / 100;
 
             if (FuelQuantity > requiredFuelForTheTrip)
             {
@@ -61,6 +61,6 @@
             }
         }
 
-        public string WhoAmI() => $"Make: {Make}\nModel: {Model}\nYear: {Year}\nFuel: {FuelQuantity:F2}L";
+        public string WhoAmI() => $"Make: {Make}\nModel: {Model}\nYear: {Year}\nHorsePowers: {Engine.HorsePower}\nFuelQuantity: {FuelQuantity}";
     }
 }

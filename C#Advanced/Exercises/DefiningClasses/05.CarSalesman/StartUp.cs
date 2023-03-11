@@ -15,8 +15,6 @@ namespace CarSalesman
                 engines.Add(CreateEngine(engineInfo));
             }
 
-            engines = PrepareEngineOutput(engines);
-
             var carsCount = int.Parse(Console.ReadLine());
             var cars = new List<Car>();
 
@@ -25,8 +23,6 @@ namespace CarSalesman
                 var carInfo = Console.ReadLine();
                 cars.Add(CreateCar(carInfo, engines));
             }
-
-            cars = PrepareCarsOutput(cars);
 
             Console.WriteLine(PrepareOutput(cars));
         }
@@ -37,8 +33,22 @@ namespace CarSalesman
 
             var model = engineParameters[0];
             var power = int.Parse(engineParameters[1]);
-            var displacement = engineParameters.Length > 2 ? engineParameters[2] : "";
-            var efficiency = engineParameters.Length > 3 ? engineParameters[3] : "";
+            var displacement = "n/a";
+            var efficiency = "n/a";
+
+            if (engineParameters.Length == 3 && IsNumeric(engineParameters[2]))
+            {
+                displacement = engineParameters[2];
+            }
+            else if (engineParameters.Length == 3 && !IsNumeric(engineParameters[2]))
+            {
+                efficiency = engineParameters[2];
+            }
+            else if (engineParameters.Length == 4)
+            {
+                displacement = engineParameters[2];
+                efficiency = engineParameters[3];
+            }
 
             return new Engine(model, power, displacement, efficiency);
         }
@@ -49,46 +59,24 @@ namespace CarSalesman
 
             var model = carParameters[0];
             var engine = engines.Where(e => e.Model == carParameters[1]).FirstOrDefault();
-            var weight = carParameters.Length > 2 ? carParameters[2] : "";
-            var color = carParameters.Length > 3 ? carParameters[3] : "";
+            var weight = "n/a";
+            var color = "n/a";
+
+            if (carParameters.Length == 3 && IsNumeric(carParameters[2]))
+            {
+                weight = carParameters[2];
+            }
+            else if (carParameters.Length == 3 && !IsNumeric(carParameters[2]))
+            {
+                color = carParameters[2];
+            }
+            else if (carParameters.Length == 4)
+            {
+                weight = carParameters[2];
+                color = carParameters[3];
+            }
 
             return new Car(model, engine, weight, color);
-        }
-
-        private static List<Engine> PrepareEngineOutput(List<Engine> engines)
-        {
-            engines.ForEach(e =>
-            {
-                if (string.IsNullOrEmpty(e.Displacement))
-                {
-                    e.Displacement = "n/a";
-                }
-
-                if (string.IsNullOrEmpty(e.Efficiency))
-                {
-                    e.Efficiency = "n/a";
-                }
-            });
-
-            return engines;
-        }
-
-        private static List<Car> PrepareCarsOutput(List<Car> cars)
-        {
-            cars.ForEach(c =>
-            {
-                if (string.IsNullOrEmpty(c.Weight))
-                {
-                    c.Weight = "n/a";
-                }
-
-                if (string.IsNullOrEmpty(c.Color))
-                {
-                    c.Color = "n/a";
-                }
-            });
-
-            return cars;
         }
 
         private static string PrepareOutput(List<Car> cars)
@@ -108,5 +96,7 @@ namespace CarSalesman
 
             return sb.ToString();
         }
+
+        private static bool IsNumeric(string str) => int.TryParse(str, out var result);
     }
 }

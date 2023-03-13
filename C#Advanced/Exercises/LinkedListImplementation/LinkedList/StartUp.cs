@@ -9,7 +9,11 @@
             myList.AddFirst(2);
             myList.AddFirst(3);
 
-           
+            myList.AddLast(4);
+            myList.AddLast(5);
+            myList.AddLast(6);
+
+            myList.PrintList();
         }
     }
 }

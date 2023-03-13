@@ -9,9 +9,14 @@
             myList.AddFirst(2);
             myList.AddFirst(3);
 
-            myList.AddLast(4);
-            myList.AddLast(5);
-            myList.AddLast(6);
+            myList.AddLast(1);
+            myList.AddLast(2);
+            myList.AddLast(3);
+
+            myList.PrintList();
+           
+            Console.WriteLine(myList.RemoveFirst());
+            Console.WriteLine(myList.RemoveLast());
 
             myList.PrintList();
         }

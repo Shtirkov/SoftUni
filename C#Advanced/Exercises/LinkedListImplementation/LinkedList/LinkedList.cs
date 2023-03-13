@@ -42,6 +42,22 @@
             }
         }
 
+        public int RemoveFirst()
+        {
+            var oldHead = Head.Value;
+            Head = Head.Next;
+            Head.Previous = null;
+            return oldHead;
+        }
+
+        public int RemoveLast()
+        {
+            var oldTail = Tail.Value;
+            Tail = Tail.Previous;
+            Tail.Next = null;
+            return oldTail;
+        }
+
         public void PrintList()
         {
             var currentNode = Head;

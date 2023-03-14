@@ -63,6 +63,17 @@
             return oldTail;
         }
 
+        public void ForEach(Action<int> action)
+        {
+            var currentNode = Head;
+
+            while (currentNode != null)
+            {
+                action(currentNode.Value);
+                currentNode = currentNode.Next;
+            }
+        }
+
         public int[] ToArray()
         {
             var array = new int[Count];

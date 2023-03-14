@@ -6,6 +6,8 @@
 
         public Node Tail { get; set; }
 
+        public int Count { get; set; }
+
 
         public void AddFirst(int element)
         {
@@ -22,12 +24,12 @@
                 Head.Previous = newHead;
                 Head = newHead;
             }
-
+            Count++;
         }
 
         public void AddLast(int element)
         {
-           var newTail = new Node(element);
+            var newTail = new Node(element);
 
             if (Tail == null)
             {
@@ -40,6 +42,7 @@
                 Tail.Next = newTail;
                 Tail = newTail;
             }
+            Count++;
         }
 
         public int RemoveFirst()
@@ -47,6 +50,7 @@
             var oldHead = Head.Value;
             Head = Head.Next;
             Head.Previous = null;
+            Count--;
             return oldHead;
         }
 
@@ -55,7 +59,22 @@
             var oldTail = Tail.Value;
             Tail = Tail.Previous;
             Tail.Next = null;
+            Count--;
             return oldTail;
+        }
+
+        public int[] ToArray()
+        {
+            var array = new int[Count];
+            var currentNode = Head;
+
+            for (int i = 0; i < Count; i++)
+            {
+                array[i] = currentNode.Value;
+                currentNode = currentNode.Next;
+            }
+
+            return array;
         }
 
         public void PrintList()

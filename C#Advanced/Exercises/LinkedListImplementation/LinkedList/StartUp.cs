@@ -16,9 +16,13 @@
             myList.PrintList();
            
             Console.WriteLine(myList.RemoveFirst());
-            Console.WriteLine(myList.RemoveLast());
-
+            Console.WriteLine(myList.RemoveLast()); 
+            Console.WriteLine("======================");
             myList.PrintList();
+            Console.WriteLine("======================");
+
+            var arr = myList.ToArray();
+            Console.WriteLine(arr.Length);
         }
     }
 }

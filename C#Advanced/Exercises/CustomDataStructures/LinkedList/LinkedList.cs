@@ -1,4 +1,6 @@
-﻿namespace LinkedList
+﻿using CustomDataStructures.Common;
+
+namespace CustomDataStructures
 {
     public class LinkedList
     {

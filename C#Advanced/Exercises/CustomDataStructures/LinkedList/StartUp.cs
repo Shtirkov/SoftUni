@@ -1,4 +1,4 @@
-﻿namespace LinkedList
+﻿namespace CustomDataStructures
 {
     internal class StartUp
     {

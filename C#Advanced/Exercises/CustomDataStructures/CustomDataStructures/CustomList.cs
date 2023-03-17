@@ -79,6 +79,19 @@
             Count++;
         }
 
+        public bool Contains(int element)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                if (_items[i] == element)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void Resize()
         {
             var copy = new int[_items.Length * 2];

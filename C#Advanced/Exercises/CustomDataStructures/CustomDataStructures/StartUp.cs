@@ -34,6 +34,8 @@
                 myList.Add(i+1);
             }
 
+            var contains = myList.Contains(5);
+           
             for (int i = 0; i < 2; i++)
             {
                 myList.InsertAt(0, i);

@@ -92,6 +92,20 @@
             return false;
         }
 
+        public void Swap(int firstIndex, int secondIndex)
+        {
+            if (!IsValidIndex(firstIndex) || !IsValidIndex(secondIndex))
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            var firstElement = _items[firstIndex];
+            var secondElement = _items[secondIndex];
+
+            _items[firstIndex] = secondElement;
+            _items[secondIndex] = firstElement;
+        }
+
         private void Resize()
         {
             var copy = new int[_items.Length * 2];

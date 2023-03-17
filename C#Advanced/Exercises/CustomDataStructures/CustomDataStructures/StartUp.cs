@@ -41,7 +41,7 @@
                 myList.InsertAt(0, i);
             } 
 
-            Console.WriteLine(myList[17]);
+            myList.Swap(0,17);
         }
     }
 }

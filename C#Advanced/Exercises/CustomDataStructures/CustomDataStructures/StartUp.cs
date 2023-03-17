@@ -29,15 +29,17 @@
 
             var myList = new CustomList();
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 16; i++)
             {
                 myList.Add(i+1);
             }
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 2; i++)
             {
-                myList.RemoveAt(i);
-            }
+                myList.InsertAt(0, i);
+            } 
+
+            Console.WriteLine(myList[17]);
         }
     }
 }

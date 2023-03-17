@@ -7,7 +7,7 @@
 
         public CustomList()
         {
-            _items = new int[_initialCapacity];   
+            _items = new int[_initialCapacity];
         }
 
         public int Count { get; private set; }
@@ -32,11 +32,11 @@
 
                 _items[index] = value;
             }
-        } 
+        }
 
         public void Add(int element)
         {
-            if (Count == _items.Length)
+            if (_items.Length == Count)
             {
                 Resize();
             }
@@ -45,24 +45,38 @@
             Count++;
         }
 
-        public int RemoveAt(int index)
+        public void RemoveAt(int index)
         {
             if (!IsValidIndex(index))
             {
                 throw new IndexOutOfRangeException();
             }
 
-            var removedElement = _items[index];
-
             _items[index] = default;
-            Shift(index);
+            ShiftLeft(index);
             Count--;
 
             if (_items.Length >= Count * 4)
             {
                 Shrink();
             }
-            return removedElement;
+        }
+
+        public void InsertAt(int index, int element)
+        {
+            if (!IsValidIndex(index))
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            if (_items.Length == Count)
+            {
+                Resize();
+            }
+
+            ShiftRight(index);
+            _items[index] = element;
+            Count++;
         }
 
         private void Resize()
@@ -86,16 +100,24 @@
                 copy[i] = _items[i];
             }
 
-            _items = copy; 
+            _items = copy;
         }
 
-        private void Shift(int startIndex)
+        private void ShiftLeft(int startIndex)
         {
-            for (int i = startIndex; i < Count-1; i++)
+            for (int i = startIndex; i < Count - 1; i++)
             {
-                _items[i] = _items[i+1];
+                _items[i] = _items[i + 1];
             }
-            _items[Count - 1] = 0;
+            _items[Count - 1] = default;
+        }
+
+        private void ShiftRight(int startIndex)
+        {
+            for (int i = Count - 1; i >= startIndex; i--)
+            {
+                _items[i + 1] = _items[i];
+            }
         }
 
         private bool IsValidIndex(int index)

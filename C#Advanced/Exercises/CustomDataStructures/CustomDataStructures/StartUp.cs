@@ -4,28 +4,40 @@
     {
         static void Main(string[] args)
         {
-            var myList = new LinkedList();
-            myList.AddFirst(1);
-            myList.AddFirst(2);
-            myList.AddFirst(3);
+            //var myList = new LinkedList();
+            //myList.AddFirst(1);
+            //myList.AddFirst(2);
+            //myList.AddFirst(3);
 
-            myList.AddLast(1);
-            myList.AddLast(2);
-            myList.AddLast(3);
+            //myList.AddLast(1);
+            //myList.AddLast(2);
+            //myList.AddLast(3);
 
-            myList.PrintList();
-           
-            Console.WriteLine(myList.RemoveFirst());
-            Console.WriteLine(myList.RemoveLast()); 
-            Console.WriteLine("======================");
+            //myList.PrintList();
 
-            myList.PrintList();
-            Console.WriteLine("======================");
+            //Console.WriteLine(myList.RemoveFirst());
+            //Console.WriteLine(myList.RemoveLast()); 
+            //Console.WriteLine("======================");
 
-            var arr = myList.ToArray();
-            Console.WriteLine(arr.Length);
+            //myList.PrintList();
+            //Console.WriteLine("======================");
 
-            myList.ForEach(x => Console.WriteLine(x));
+            //var arr = myList.ToArray();
+            //Console.WriteLine(arr.Length);
+
+            //myList.ForEach(x => Console.WriteLine(x));
+
+            var myList = new CustomList();
+
+            for (int i = 0; i < 8; i++)
+            {
+                myList.Add(i+1);
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                myList.RemoveAt(i);
+            }
         }
     }
 }

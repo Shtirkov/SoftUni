@@ -27,7 +27,7 @@ namespace CustomDataStructures
         {
             if (Count == 0)
             {
-                throw new InvalidOperationException("Stack contains no elements!");
+                throw new InvalidOperationException("Stack is empty!");
             }
             else
             {
@@ -36,6 +36,18 @@ namespace CustomDataStructures
                 _head = newHead;
                 Count--;
                 return oldHead.Value;
+            }
+        }
+
+        public int Peek()
+        {
+            if (Count == 0)
+            {
+                throw new InvalidOperationException("Stack is empty!");
+            }
+            else
+            {
+                return _head.Value;
             }
         }
     }

@@ -43,6 +43,8 @@
 
             //myList.Swap(0,17);
 
+            //var s = new Stack<int>();
+            //s.Peek();
 
             var stack = new CustomStack();
             var count = stack.Count;
@@ -52,11 +54,11 @@
             stack.Push(4);
             stack.Push(5);
             var test = stack.Pop();
-            stack.Pop();
-            stack.Pop();
-            stack.Pop();
-            stack.Pop();
-            stack.Pop();
+            var test2 = stack.Peek();
+            stack.Peek();
+            stack.Peek();
+            stack.Peek();
+            stack.Peek();
             Console.WriteLine(stack.Count);
         }
     }

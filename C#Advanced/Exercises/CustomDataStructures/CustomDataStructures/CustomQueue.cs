@@ -23,5 +23,21 @@ namespace CustomDataStructures
             }
             Count++;
         }
+
+        public int Dequeue()
+        {
+            if (Count == 0)
+            {
+                throw new InvalidOperationException("Queue is empty!");
+            }
+            else
+            {
+                var oldTail = _tail;
+                var newTail = _tail.Previous;
+                _tail = newTail;
+                Count--;
+                return oldTail.Value;
+            }
+        }
     }
 }

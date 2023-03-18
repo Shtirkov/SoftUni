@@ -50,5 +50,17 @@ namespace CustomDataStructures
                 return _head.Value;
             }
         }
+
+        public void ForEach(Action<int> action)
+        {
+            var currentHead = _head;
+
+            while (currentHead != null)
+            {
+                action(currentHead.Value);
+                currentHead = currentHead.Next;
+            }
+
+        }
     }
 }

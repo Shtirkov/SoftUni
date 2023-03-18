@@ -4,6 +4,8 @@
     {
         static void Main(string[] args)
         {
+            // 1.Testing linked list
+
             //var myList = new LinkedList();
             //myList.AddFirst(1);
             //myList.AddFirst(2);
@@ -27,6 +29,9 @@
 
             //myList.ForEach(x => Console.WriteLine(x));
 
+
+            // 2.Testing custom list
+
             //var myList = new CustomList();
 
             //for (int i = 0; i < 16; i++)
@@ -43,23 +48,24 @@
 
             //myList.Swap(0,17);
 
-            //var s = new Stack<int>();
-            //s.Peek();
+            // 3.Testing custom stack
 
-            var stack = new CustomStack();
-            var count = stack.Count;
-            stack.Push(1);
-            stack.Push(2);
-            stack.Push(3);
-            stack.Push(4);
-            stack.Push(5);
-            var test = stack.Pop();
-            var test2 = stack.Peek();
-            stack.Peek();
-            stack.Peek();
-            stack.Peek();
-            stack.Peek();
-            Console.WriteLine(stack.Count);
+            //var stack = new CustomStack();
+            //var count = stack.Count;
+            //stack.Push(1);
+            //stack.Push(2);
+            //stack.Push(3);
+            //stack.Push(4);
+            //stack.Push(5);
+            //var test = stack.Pop();
+            //var test2 = stack.Peek();
+            //stack.Peek();
+            //stack.Peek();
+            //stack.Peek();
+            //stack.Peek();
+            //var sum = 0;
+            //stack.ForEach(x => sum += x);
+            //Console.WriteLine(sum);
         }
     }
 }

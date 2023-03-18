@@ -51,5 +51,16 @@ namespace CustomDataStructures
                 return _tail.Value;
             }
         }
+
+        public void ForEach(Action<int> action)
+        {
+            var currentTail = _tail;
+
+            while (currentTail != null)
+            {
+                action(currentTail.Value);
+                currentTail = currentTail.Previous;
+            }
+        }
     }
 }

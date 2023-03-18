@@ -69,15 +69,18 @@
 
             // 4. Testing custom queue
 
-            var queue = new CustomQueue();
-            queue.Enqueue(1);
-            queue.Enqueue(2);
-            queue.Enqueue(3);
-            var test = queue.Dequeue();
-            queue.Dequeue();
-            queue.Dequeue();
-            var test2 = queue.Peek();
-           
+            //var queue = new CustomQueue();
+            //queue.Enqueue(1);
+            //queue.Enqueue(2);
+            //queue.Enqueue(3);
+            //var test = queue.Dequeue();
+            //queue.Dequeue();
+            //queue.Dequeue();
+            //var test2 = queue.Peek();
+            //var sum = 0;
+            //queue.ForEach(x => sum += x);
+            //Console.WriteLine(sum);
+
         }
     }
 }

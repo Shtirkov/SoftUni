@@ -66,6 +66,15 @@
             //var sum = 0;
             //stack.ForEach(x => sum += x);
             //Console.WriteLine(sum);
+
+            // 4. Testing custom queue
+
+            var queue = new CustomQueue();
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+            queue.Enqueue(4);
+            queue.Enqueue(5);
         }
     }
 }

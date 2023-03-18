@@ -51,6 +51,12 @@
             stack.Push(3);
             stack.Push(4);
             stack.Push(5);
+            var test = stack.Pop();
+            stack.Pop();
+            stack.Pop();
+            stack.Pop();
+            stack.Pop();
+            stack.Pop();
             Console.WriteLine(stack.Count);
         }
     }

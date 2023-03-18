@@ -22,5 +22,21 @@ namespace CustomDataStructures
             }
             Count++;
         }
+
+        public int Pop()
+        {
+            if (Count == 0)
+            {
+                throw new InvalidOperationException("Stack contains no elements!");
+            }
+            else
+            {
+                var oldHead = _head;
+                var newHead = _head.Next;
+                _head = newHead;
+                Count--;
+                return oldHead.Value;
+            }
+        }
     }
 }

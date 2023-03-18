@@ -76,7 +76,8 @@
             var test = queue.Dequeue();
             queue.Dequeue();
             queue.Dequeue();
-
+            var test2 = queue.Peek();
+           
         }
     }
 }

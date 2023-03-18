@@ -39,5 +39,17 @@ namespace CustomDataStructures
                 return oldTail.Value;
             }
         }
+
+        public int Peek()
+        {
+            if (Count == 0)
+            {
+                throw new InvalidOperationException("Queue is empty");
+            }
+            else
+            {
+                return _tail.Value;
+            }
+        }
     }
 }

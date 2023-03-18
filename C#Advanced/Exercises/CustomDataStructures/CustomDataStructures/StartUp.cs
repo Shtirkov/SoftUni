@@ -27,21 +27,31 @@
 
             //myList.ForEach(x => Console.WriteLine(x));
 
-            var myList = new CustomList();
+            //var myList = new CustomList();
 
-            for (int i = 0; i < 16; i++)
-            {
-                myList.Add(i+1);
-            }
+            //for (int i = 0; i < 16; i++)
+            //{
+            //    myList.Add(i+1);
+            //}
 
-            var contains = myList.Contains(5);
-           
-            for (int i = 0; i < 2; i++)
-            {
-                myList.InsertAt(0, i);
-            } 
+            //var contains = myList.Contains(5);
 
-            myList.Swap(0,17);
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    myList.InsertAt(0, i);
+            //} 
+
+            //myList.Swap(0,17);
+
+
+            var stack = new CustomStack();
+            var count = stack.Count;
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3);
+            stack.Push(4);
+            stack.Push(5);
+            Console.WriteLine(stack.Count);
         }
     }
 }

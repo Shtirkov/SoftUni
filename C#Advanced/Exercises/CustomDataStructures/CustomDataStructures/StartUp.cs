@@ -30,23 +30,25 @@
             //myList.ForEach(x => Console.WriteLine(x));
 
 
-            // 2.Testing custom list
+           // 2.Testing custom list
 
-            //var myList = new CustomList();
+            //var myList = new CustomList<string>();
 
             //for (int i = 0; i < 16; i++)
             //{
-            //    myList.Add(i+1);
+            //    myList.Add($"i = {i}");
             //}
 
-            //var contains = myList.Contains(5);
+            //var contains = myList.Contains("test");
 
             //for (int i = 0; i < 2; i++)
             //{
-            //    myList.InsertAt(0, i);
-            //} 
+            //    myList.InsertAt(0, "test");
+            //}
 
-            //myList.Swap(0,17);
+            //var contains2 = myList.Contains("test");
+
+            //myList.Swap(0, 17);
 
             // 3.Testing custom stack
 

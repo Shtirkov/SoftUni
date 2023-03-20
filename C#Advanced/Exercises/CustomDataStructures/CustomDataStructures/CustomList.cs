@@ -1,18 +1,18 @@
 ﻿namespace CustomDataStructures
 {
-    public class CustomList
+    public class CustomList<T>
     {
         private const int _initialCapacity = 2;
-        private int[] _items;
+        private T[] _items;
 
         public CustomList()
         {
-            _items = new int[_initialCapacity];
+            _items = new T[_initialCapacity];
         }
 
         public int Count { get; private set; }
 
-        public int this[int index]
+        public T this[int index]
         {
             get
             {
@@ -34,7 +34,7 @@
             }
         }
 
-        public void Add(int element)
+        public void Add(T element)
         {
             if (_items.Length == Count)
             {
@@ -62,7 +62,7 @@
             }
         }
 
-        public void InsertAt(int index, int element)
+        public void InsertAt(int index, T element)
         {
             if (!IsValidIndex(index))
             {
@@ -79,11 +79,11 @@
             Count++;
         }
 
-        public bool Contains(int element)
+        public bool Contains(T element)
         {
             for (int i = 0; i < Count; i++)
             {
-                if (_items[i] == element)
+                if (_items[i].Equals(element))
                 {
                     return true;
                 }
@@ -108,7 +108,7 @@
 
         private void Resize()
         {
-            var copy = new int[_items.Length * 2];
+            var copy = new T[_items.Length * 2];
 
             for (int i = 0; i < Count; i++)
             {
@@ -120,7 +120,7 @@
 
         private void Shrink()
         {
-            var copy = new int[_items.Length / 2];
+            var copy = new T[_items.Length / 2];
 
             for (int i = 0; i < Count; i++)
             {

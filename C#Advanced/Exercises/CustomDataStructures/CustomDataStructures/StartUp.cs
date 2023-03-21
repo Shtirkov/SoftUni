@@ -50,40 +50,40 @@
 
             //myList.Swap(0, 17);
 
-            // 3.Testing custom stack
+            //3.Testing custom stack
 
-            //var stack = new CustomStack();
-            //var count = stack.Count;
-            //stack.Push(1);
-            //stack.Push(2);
-            //stack.Push(3);
-            //stack.Push(4);
-            //stack.Push(5);
-            //var test = stack.Pop();
-            //var test2 = stack.Peek();
-            //stack.Peek();
-            //stack.Peek();
-            //stack.Peek();
-            //stack.Peek();
-            //var sum = 0;
-            //stack.ForEach(x => sum += x);
-            //Console.WriteLine(sum);
+            var stack = new CustomStack<char>();
+            var count = stack.Count;
+            stack.Push('a');
+            stack.Push('b');
+            stack.Push('c');
+            stack.Push('d');
+            stack.Push('e');
+            var test = stack.Pop();
+            var test2 = stack.Peek();
+            stack.Peek();
+            stack.Peek();
+            stack.Peek();
+            stack.Peek();
+            var text = "";
+            stack.ForEach(x => text += x);
+            Console.WriteLine(text);
 
             // 4. Testing custom queue
 
-            var queue = new CustomQueue<string>();
-            queue.Enqueue("az");
-            queue.Enqueue("ti");
-            queue.Enqueue("toi");
-            queue.Enqueue("toi");
-            queue.Enqueue("toi");
-            var test = queue.Dequeue();
-            queue.Dequeue();
-            queue.Dequeue();
-            var test2 = queue.Peek();
-            var text = "";
-            queue.ForEach(x => text += x);
-            Console.WriteLine(text);
+            //var queue = new CustomQueue<string>();
+            //queue.Enqueue("az");
+            //queue.Enqueue("ti");
+            //queue.Enqueue("toi");
+            //queue.Enqueue("toi");
+            //queue.Enqueue("toi");
+            //var test = queue.Dequeue();
+            //queue.Dequeue();
+            //queue.Dequeue();
+            //var test2 = queue.Peek();
+            //var text = "";
+            //queue.ForEach(x => text += x);
+            //Console.WriteLine(text);
 
         }
     }

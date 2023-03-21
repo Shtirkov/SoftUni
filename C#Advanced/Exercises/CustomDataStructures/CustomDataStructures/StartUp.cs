@@ -6,28 +6,28 @@
         {
             // 1.Testing linked list
 
-            //var myList = new LinkedList();
-            //myList.AddFirst(1);
-            //myList.AddFirst(2);
-            //myList.AddFirst(3);
+            var myList = new CustomLinkedList<string>();
+            myList.AddFirst("pesho");
+            myList.AddFirst("gosho");
+            myList.AddFirst("spas");
 
-            //myList.AddLast(1);
-            //myList.AddLast(2);
-            //myList.AddLast(3);
+            myList.AddLast("ivan");
+            myList.AddLast("misho");
+            myList.AddLast("stoqn");
 
-            //myList.PrintList();
+            myList.PrintList();
 
-            //Console.WriteLine(myList.RemoveFirst());
-            //Console.WriteLine(myList.RemoveLast()); 
-            //Console.WriteLine("======================");
+            Console.WriteLine(myList.RemoveFirst());
+            Console.WriteLine(myList.RemoveLast());
+            Console.WriteLine("======================");
 
-            //myList.PrintList();
-            //Console.WriteLine("======================");
+            myList.PrintList();
+            Console.WriteLine("======================");
 
-            //var arr = myList.ToArray();
-            //Console.WriteLine(arr.Length);
+            var arr = myList.ToArray();
+            Console.WriteLine(arr.Length);
 
-            //myList.ForEach(x => Console.WriteLine(x));
+            myList.ForEach(x => Console.WriteLine(x));
 
 
             // 2.Testing custom list
@@ -52,22 +52,22 @@
 
             //3.Testing custom stack
 
-            var stack = new CustomStack<char>();
-            var count = stack.Count;
-            stack.Push('a');
-            stack.Push('b');
-            stack.Push('c');
-            stack.Push('d');
-            stack.Push('e');
-            var test = stack.Pop();
-            var test2 = stack.Peek();
-            stack.Peek();
-            stack.Peek();
-            stack.Peek();
-            stack.Peek();
-            var text = "";
-            stack.ForEach(x => text += x);
-            Console.WriteLine(text);
+            //var stack = new CustomStack<char>();
+            //var count = stack.Count;
+            //stack.Push('a');
+            //stack.Push('b');
+            //stack.Push('c');
+            //stack.Push('d');
+            //stack.Push('e');
+            //var test = stack.Pop();
+            //var test2 = stack.Peek();
+            //stack.Peek();
+            //stack.Peek();
+            //stack.Peek();
+            //stack.Peek();
+            //var text = "";
+            //stack.ForEach(x => text += x);
+            //Console.WriteLine(text);
 
             // 4. Testing custom queue
 
@@ -84,7 +84,6 @@
             //var text = "";
             //queue.ForEach(x => text += x);
             //Console.WriteLine(text);
-
         }
     }
 }

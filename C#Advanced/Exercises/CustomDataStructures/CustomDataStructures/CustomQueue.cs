@@ -2,29 +2,29 @@
 
 namespace CustomDataStructures
 {
-    public class CustomQueue
+    public class CustomQueue<T>
     {
-        private Node _tail;
+        private Node<T> _tail;
 
         public int Count { get; private set; }
 
-        public void Enqueue(int element)
+        public void Enqueue(T element)
         {
             if (_tail == null)
             {
-                _tail = new Node(element);
+                _tail = new Node<T>(element);
             }
             else
             {
                 var oldTail = _tail;
-                var newTail = new Node(element);
+                var newTail = new Node<T>(element);
                 _tail = newTail;
                 _tail.Previous = oldTail;
             }
             Count++;
         }
 
-        public int Dequeue()
+        public T Dequeue()
         {
             if (Count == 0)
             {
@@ -40,7 +40,7 @@ namespace CustomDataStructures
             }
         }
 
-        public int Peek()
+        public T Peek()
         {
             if (Count == 0)
             {
@@ -52,7 +52,7 @@ namespace CustomDataStructures
             }
         }
 
-        public void ForEach(Action<int> action)
+        public void ForEach(Action<T> action)
         {
             var currentTail = _tail;
 

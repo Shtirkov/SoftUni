@@ -30,7 +30,7 @@
             //myList.ForEach(x => Console.WriteLine(x));
 
 
-           // 2.Testing custom list
+            // 2.Testing custom list
 
             //var myList = new CustomList<string>();
 
@@ -71,17 +71,19 @@
 
             // 4. Testing custom queue
 
-            //var queue = new CustomQueue();
-            //queue.Enqueue(1);
-            //queue.Enqueue(2);
-            //queue.Enqueue(3);
-            //var test = queue.Dequeue();
-            //queue.Dequeue();
-            //queue.Dequeue();
-            //var test2 = queue.Peek();
-            //var sum = 0;
-            //queue.ForEach(x => sum += x);
-            //Console.WriteLine(sum);
+            var queue = new CustomQueue<string>();
+            queue.Enqueue("az");
+            queue.Enqueue("ti");
+            queue.Enqueue("toi");
+            queue.Enqueue("toi");
+            queue.Enqueue("toi");
+            var test = queue.Dequeue();
+            queue.Dequeue();
+            queue.Dequeue();
+            var test2 = queue.Peek();
+            var text = "";
+            queue.ForEach(x => text += x);
+            Console.WriteLine(text);
 
         }
     }

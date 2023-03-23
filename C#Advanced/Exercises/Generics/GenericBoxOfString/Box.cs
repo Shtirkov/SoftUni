@@ -1,4 +1,4 @@
-﻿namespace GenericBoxOfString
+﻿namespace Box
 {
     public class Box<T>
     {
@@ -10,5 +10,15 @@
         }
 
         public override string ToString() => $"{typeof(T).FullName}: {_value}";
+
+        public static List<Box<T>> Swap(List<Box<T>> elements, int firstIndex, int secondIndex)
+        {
+            var firstElement = elements[firstIndex];
+            var secondElement = elements[secondIndex];
+            elements[firstIndex] = secondElement;
+            elements[secondIndex] = firstElement;
+
+            return elements;
+        }
     }
 }

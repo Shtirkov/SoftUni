@@ -1,6 +1,6 @@
 ﻿namespace Box
 {
-    public class Box<T>
+    public class Box<T> where T : IComparable<T>
     {
         private readonly T _value;
 
@@ -20,5 +20,7 @@
 
             return elements;
         }
+
+        public static int GetValidElementsCount(List<Box<T>> elements, T element) => elements.Where(e => e._value.CompareTo(element) > 0).ToList().Count;
     }
 }

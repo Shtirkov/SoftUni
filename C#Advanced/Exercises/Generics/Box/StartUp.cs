@@ -5,18 +5,17 @@
         static void Main(string[] args)
         {
             var count = int.Parse(Console.ReadLine());
-            var elements = new List<Box<int>>();
+            var elements = new List<Box<double>>();
 
             for (int i = 0; i < count; i++)
             {
-                var input = int.Parse(Console.ReadLine());
-                elements.Add(new Box<int>(input));
+                var input = double.Parse(Console.ReadLine());
+                elements.Add(new Box<double>(input));
             }
 
-            var command = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            var elementToCompareTo = double.Parse(Console.ReadLine());
 
-            Box<int>.Swap(elements, command[0], command[1]);
-            elements.ForEach(x => Console.WriteLine(x.ToString()));
+            Console.WriteLine(Box<double>.GetValidElementsCount(elements, elementToCompareTo)); 
         }
     }
 }

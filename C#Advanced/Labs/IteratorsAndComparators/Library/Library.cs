@@ -9,7 +9,7 @@ namespace IteratorsAndComparators
         public Library(params Book[] books)
         {
             _books = books.ToList();
-            _books.Sort();
+            _books.Sort(new BookComparator());
         }
 
         public IEnumerator<Book> GetEnumerator() => new LibraryIterator(_books);

@@ -1,4 +1,6 @@
-﻿namespace ListyIterator
+﻿using System.Text;
+
+namespace ListyIterator
 {
     public class StartUp
     {
@@ -28,6 +30,9 @@
                         {
                             Console.WriteLine(e.Message);
                         }
+                        break;
+                    case "PrintAll":
+                        collection.PrintAll();
                         break;
                 }
 

@@ -1,6 +1,9 @@
-﻿namespace ListyIterator
+﻿using System.Collections;
+using System.Threading.Channels;
+
+namespace ListyIterator
 {
-    public class ListyIterator<T>
+    public class ListyIterator<T> : IEnumerable<T>
     {
         private readonly List<T> _list;
         private int _index;
@@ -9,6 +12,11 @@
         {
             _list = collection;
             _index = 0;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
 
         public bool HasNext() => _index < _list.Count - 1;
@@ -31,6 +39,17 @@
             }
 
             Console.WriteLine(_list[_index]);
+        }
+
+        public void PrintAll() => Console.WriteLine(string.Join(" ", _list));        
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            while (HasNext())
+            {
+                yield return _list[_index];
+                Move();
+            }
         }
     }
 }

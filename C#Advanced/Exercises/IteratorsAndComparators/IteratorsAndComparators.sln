@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListyIterator", "ListyItera
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomStack", "CustomStack\CustomStack.csproj", "{DA68BCFA-6606-4586-95B1-0FC7DDB9F5B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Froggy", "Froggy\Froggy.csproj", "{4D5BE801-356D-4E65-B107-62543696890F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Froggy", "Froggy\Froggy.csproj", "{4D5BE801-356D-4E65-B107-62543696890F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComparingObjects", "ComparingObjects\ComparingObjects.csproj", "{585380CF-5E75-476B-88F4-9F86E8A0B3FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComparingObjects", "ComparingObjects\ComparingObjects.csproj", "{585380CF-5E75-476B-88F4-9F86E8A0B3FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqualityLogic", "EqualityLogic\EqualityLogic.csproj", "{B40FA16B-CEBC-48F8-98C5-4C03B726595F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{585380CF-5E75-476B-88F4-9F86E8A0B3FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{585380CF-5E75-476B-88F4-9F86E8A0B3FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{585380CF-5E75-476B-88F4-9F86E8A0B3FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B40FA16B-CEBC-48F8-98C5-4C03B726595F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B40FA16B-CEBC-48F8-98C5-4C03B726595F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B40FA16B-CEBC-48F8-98C5-4C03B726595F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B40FA16B-CEBC-48F8-98C5-4C03B726595F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

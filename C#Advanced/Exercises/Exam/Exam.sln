@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bombs", "Bombs\Bombs.csproj", "{50CBF7A9-A3F5-4879-BB83-F71CA8891A4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snake", "Snake\Snake.csproj", "{51666A97-8E7D-4BE6-B98B-28392E699EB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{50CBF7A9-A3F5-4879-BB83-F71CA8891A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50CBF7A9-A3F5-4879-BB83-F71CA8891A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50CBF7A9-A3F5-4879-BB83-F71CA8891A4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51666A97-8E7D-4BE6-B98B-28392E699EB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51666A97-8E7D-4BE6-B98B-28392E699EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51666A97-8E7D-4BE6-B98B-28392E699EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51666A97-8E7D-4BE6-B98B-28392E699EB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

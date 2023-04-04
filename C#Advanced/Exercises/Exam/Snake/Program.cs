@@ -46,7 +46,6 @@ namespace Snake
                 colIndex > matrix.GetUpperBound(1))
             {
                 return false;
-
             }
 
             return true;

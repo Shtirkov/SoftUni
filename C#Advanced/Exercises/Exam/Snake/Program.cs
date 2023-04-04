@@ -6,31 +6,6 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            var matrixSize = int.Parse(Console.ReadLine());
-            var matrix = new char[matrixSize, matrixSize];
-
-            FillMatrix(matrix);
-            Console.WriteLine(PrintMatrix(matrix));
-
-            var foodEaten = 0;
-
-            while (true)
-            {
-                var command = Console.ReadLine();
-
-                switch (command)
-                {
-                    case "up":
-                       
-                        break;
-                    case "down":
-                        break;
-                    case "left":
-                        break;
-                    case "right":
-                        break;
-                }
-            }
 
         }
 
@@ -61,6 +36,20 @@ namespace Snake
             }
 
             return output.ToString();
+        }
+
+        private static bool IsValidPosition(char[,] matrix, int rowIndex, int colIndex)
+        {
+            if (rowIndex < matrix.GetLowerBound(0) ||
+                rowIndex > matrix.GetUpperBound(0) ||
+                colIndex < matrix.GetLowerBound(1) ||
+                colIndex > matrix.GetUpperBound(1))
+            {
+                return false;
+
+            }
+
+            return true;
         }
     }
 }

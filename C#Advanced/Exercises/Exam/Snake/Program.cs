@@ -17,150 +17,54 @@ namespace Snake
 
             while (true)
             {
-                var command = Console.ReadLine();
+                var direction = Console.ReadLine();
+                matrix[snakePosition[0], snakePosition[1]] = '.';
+
+                switch (direction)
+                {
+                    case "up":
+                        snakePosition[0]--;
+                        break;
+                    case "down":
+                        snakePosition[0]++;
+                        break;
+                    case "left":
+                        snakePosition[1]--;
+                        break;
+                    case "right":
+                        snakePosition[1]++;
+                        break;
+                }
 
                 if (foodEaten >= 10)
                 {
+                    matrix[snakePosition[0], snakePosition[1]] = 'S';
                     Console.WriteLine("You won! You fed the snake.");
                     Console.WriteLine($"Food eaten: {foodEaten}");
                     Console.WriteLine(PrintMatrix(matrix));
                     return;
                 }
-
-                switch (command)
+                else if (!IsValidPosition(matrix, snakePosition[0], snakePosition[1]))
                 {
-                    case "up":
-                        if (!IsValidPosition(matrix, snakePosition[0] - 1, snakePosition[1]))
-                        {
-                            Console.WriteLine("Game over!");
-                            Console.WriteLine($"Food eaten: {foodEaten}");
-                            matrix[snakePosition[0], snakePosition[1]] = '.';
-                            Console.WriteLine(PrintMatrix(matrix));
-                            return;
-                        }
-                        else
-                        {
-                            matrix[snakePosition[0], snakePosition[1]] = '.';
+                    Console.WriteLine("Game over!");
+                    Console.WriteLine($"Food eaten: {foodEaten}");
+                    Console.WriteLine(PrintMatrix(matrix));
+                    return;
+                }
+                else
+                {
+                    if (matrix[snakePosition[0], snakePosition[1]] == '*')
+                    {
+                        foodEaten++;
+                    }
+                    else if (matrix[snakePosition[0], snakePosition[1]] == 'B')
+                    {
+                        matrix[snakePosition[0], snakePosition[1]] = '.';
+                        snakePosition[0] = secondBurrowPosition[0];
+                        snakePosition[1] = secondBurrowPosition[1];
+                    }
 
-                            if (matrix[snakePosition[0] - 1, snakePosition[1]] == 'B')
-                            {
-                                matrix[firstBurrowPosition[0],firstBurrowPosition[1]] = '.';
-                                matrix[secondBurrowPosition[0], secondBurrowPosition[1]] = 'S';
-                                snakePosition[0] = secondBurrowPosition[0];
-                                snakePosition[1] = secondBurrowPosition[1];
-                            }
-                            else if (matrix[snakePosition[0] - 1, snakePosition[1]] == '*')
-                            {
-                                foodEaten++;
-                                matrix[snakePosition[0] - 1, snakePosition[1]] = 'S';
-                                snakePosition[0] -= 1;
-                            }
-                            else
-                            {
-                                matrix[snakePosition[0] - 1, snakePosition[1]] = 'S';
-                                snakePosition[0] -= 1;
-                            }
-                        }
-                        break;
-                    case "down":
-                        if (!IsValidPosition(matrix, snakePosition[0] + 1, snakePosition[1]))
-                        {
-                            Console.WriteLine("Game over!");
-                            Console.WriteLine($"Food eaten: {foodEaten}");
-                            matrix[snakePosition[0], snakePosition[1]] = '.';
-                            Console.WriteLine(PrintMatrix(matrix));
-                            return;
-                        }
-                        else
-                        {
-                            matrix[snakePosition[0], snakePosition[1]] = '.';
-
-                            if (matrix[snakePosition[0] + 1, snakePosition[1]] == 'B')
-                            {
-                                matrix[firstBurrowPosition[0], firstBurrowPosition[1]] = '.';
-                                matrix[secondBurrowPosition[0], secondBurrowPosition[1]] = 'S';
-                                snakePosition[0] = secondBurrowPosition[0];
-                                snakePosition[1] = secondBurrowPosition[1];
-                            }
-                            else if (matrix[snakePosition[0] + 1, snakePosition[1]] == '*')
-                            {
-                                foodEaten++;
-                                matrix[snakePosition[0] + 1, snakePosition[1]] = 'S';
-                                snakePosition[0] += 1;
-                            }
-                            else
-                            {
-                                matrix[snakePosition[0] + 1, snakePosition[1]] = 'S';
-                                snakePosition[0] += 1;
-                            }
-                        }
-                        break;
-                    case "left":
-                        if (!IsValidPosition(matrix, snakePosition[0], snakePosition[1] - 1))
-                        {
-                            Console.WriteLine("Game over!");
-                            Console.WriteLine($"Food eaten: {foodEaten}");
-                            matrix[snakePosition[0], snakePosition[1]] = '.';
-                            Console.WriteLine(PrintMatrix(matrix));
-                            return;
-                        }
-                        else
-                        {
-                            matrix[snakePosition[0], snakePosition[1]] = '.';
-
-                            if (matrix[snakePosition[0], snakePosition[1] - 1] == 'B')
-                            {
-                                matrix[firstBurrowPosition[0], firstBurrowPosition[1]] = '.';
-                                matrix[secondBurrowPosition[0], secondBurrowPosition[1]] = 'S';
-                                snakePosition[0] = secondBurrowPosition[0];
-                                snakePosition[1] = secondBurrowPosition[1];
-                            }
-                            else if (matrix[snakePosition[0], snakePosition[1] - 1] == '*')
-                            {
-                                foodEaten++;
-                                matrix[snakePosition[0], snakePosition[1] - 1] = 'S';
-                                snakePosition[1] -= 1;
-                            }
-                            else
-                            {
-                                matrix[snakePosition[0], snakePosition[1] - 1] = 'S';
-                                snakePosition[1] -= 1;
-                            }
-                        }
-                        break;
-                    case "right":
-                        if (!IsValidPosition(matrix, snakePosition[0] - 1, snakePosition[1]))
-                        {
-                            Console.WriteLine("Game over!");
-                            Console.WriteLine($"Food eaten: {foodEaten}");
-                            matrix[snakePosition[0], snakePosition[1]] = '.';
-                            Console.WriteLine(PrintMatrix(matrix));
-                            return;
-                        }
-                        else
-                        {
-                            matrix[snakePosition[0], snakePosition[1]] = '.';
-
-                            if (matrix[snakePosition[0], snakePosition[1] + 1] == 'B')
-                            {
-                                matrix[firstBurrowPosition[0], firstBurrowPosition[1]] = '.';
-                                matrix[secondBurrowPosition[0], secondBurrowPosition[1]] = 'S';
-                                snakePosition[0] = secondBurrowPosition[0];
-                                snakePosition[1] = secondBurrowPosition[1];
-                            }
-                            else if (matrix[snakePosition[0], snakePosition[1] + 1] == '*')
-                            {
-                                foodEaten++;
-                                matrix[snakePosition[0], snakePosition[1] + 1] = 'S';
-                                snakePosition[1] += 1;
-                            }
-                            else
-                            {
-                                matrix[snakePosition[0], snakePosition[1] + 1] = 'S';
-                                snakePosition[1] += 1;
-                            }
-                        }
-                        break;
+                    matrix[snakePosition[0], snakePosition[1]] = 'S';
                 }
             }
         }

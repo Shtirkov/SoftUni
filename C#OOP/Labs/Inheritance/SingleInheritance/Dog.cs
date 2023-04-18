@@ -4,7 +4,7 @@
     {
         public void Bark()
         {
-            Console.WriteLine("barking");
+            Console.WriteLine("barking...");
         }
     }
 }

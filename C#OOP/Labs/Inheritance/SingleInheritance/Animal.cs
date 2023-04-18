@@ -4,7 +4,7 @@
     {
         public void Eat()
         {
-            Console.WriteLine("eating");
+            Console.WriteLine("eating...");
         }
     }
 }

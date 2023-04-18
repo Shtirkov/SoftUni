@@ -2,9 +2,6 @@
 {
     public class Animal
     {
-        public void Eat()
-        {
-            Console.WriteLine("eating...");
-        }
+        public void Eat() => Console.WriteLine("eating...");
     }
 }

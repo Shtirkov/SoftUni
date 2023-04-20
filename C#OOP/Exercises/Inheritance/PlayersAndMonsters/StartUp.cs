@@ -4,7 +4,7 @@
     {
         public static void Main(string[] args)
         {
-
+            var sm = new SoulMaster("Ivan", 80);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace NeedForSpeed
     {
         public static void Main(string[] args)
         {
-            var familyCar = new FamilyCar(90,50);
+            var familyCar = new SportCar(90,50);
             familyCar.Drive(10);
         }
     }

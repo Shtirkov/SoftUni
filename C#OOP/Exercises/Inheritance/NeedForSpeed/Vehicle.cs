@@ -2,7 +2,7 @@
 {
     public class Vehicle
     {
-        private readonly double _defaultFuelConsumption = 1.25;
+        private double _defaultFuelConsumption = 1.25;
 
         public Vehicle(int horsePower, double fuel)
         {
@@ -10,7 +10,7 @@
             Fuel = fuel;            
         }
 
-        public virtual double FuelConsumption  { get => _defaultFuelConsumption; }
+        public virtual double FuelConsumption  { get => _defaultFuelConsumption; set => _defaultFuelConsumption = value; }
 
         public double Fuel { get; set; }
 

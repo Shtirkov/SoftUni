@@ -2,13 +2,12 @@
 {
     public class RaceMotorcycle : Motorcycle
     {
-        private readonly double _defaultFuelConsumption = 8;
-
         public RaceMotorcycle(int horsePower, double fuel)
             : base(horsePower, fuel)
         {
+            base.FuelConsumption = 8;
         }
 
-        public override double FuelConsumption { get => _defaultFuelConsumption; }
+        public override double FuelConsumption { get => base.FuelConsumption;}
     }
 }

@@ -2,7 +2,7 @@
 {
     internal class StartUp
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var name = Console.ReadLine();
             var age = int.Parse(Console.ReadLine());

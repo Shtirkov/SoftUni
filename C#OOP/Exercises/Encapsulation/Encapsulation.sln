@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Box", "Box\Box.csproj", "{1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalFarm", "AnimalFarm\AnimalFarm.csproj", "{789C3C24-4B69-4EC8-87F3-ECA02D3FB35A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSpree", "ShoppingSpree\ShoppingSpree.csproj", "{3DE244F2-7F38-4AF5-8C52-FC03841D6E8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{789C3C24-4B69-4EC8-87F3-ECA02D3FB35A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{789C3C24-4B69-4EC8-87F3-ECA02D3FB35A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{789C3C24-4B69-4EC8-87F3-ECA02D3FB35A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DE244F2-7F38-4AF5-8C52-FC03841D6E8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DE244F2-7F38-4AF5-8C52-FC03841D6E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DE244F2-7F38-4AF5-8C52-FC03841D6E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DE244F2-7F38-4AF5-8C52-FC03841D6E8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

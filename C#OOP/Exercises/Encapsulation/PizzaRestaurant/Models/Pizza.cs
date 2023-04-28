@@ -2,8 +2,10 @@
 {
     public class Pizza
     {
-        private string _name;
-        private Dough _dough;
-        private Topping _toppings;
+        public string Name { get; set; }
+
+        public Dough Dough { get; set; }
+
+        public ICollection<Topping> Toppings { get; set; }
     }
 }

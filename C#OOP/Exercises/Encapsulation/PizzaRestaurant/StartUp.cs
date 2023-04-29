@@ -12,41 +12,51 @@ namespace PizzaRestaurant
             {
                 var inputArr = input.Split();
 
-                switch (inputArr.Length)
+                switch (inputArr[0])
                 {
-                    case 4:
-                        var flourType = char.ToUpper(inputArr[1][0]) + inputArr[1].Substring(1);
-                        var bakingTechnique = char.ToUpper(inputArr[2][0]) + inputArr[2].Substring(1);
-                        var doughtWeight = int.Parse(inputArr[3]);
-
-                        try
-                        {
-                            var dough = new Dough(flourType, bakingTechnique, doughtWeight);
-                            Console.WriteLine($"{dough.CalculateCalories():f2}");
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
+                    case "Dough":
+                        SelectDoughTypeAndCalcualteCalories(inputArr);
                         break;
-                    case 3:
-                        var toppingType = char.ToUpper(inputArr[1][0]) + inputArr[1].Substring(1);
-                        var toppingWeight = int.Parse(inputArr[2]);
-
-                        try
-                        {
-                            var topping = new Topping(toppingType,toppingWeight);
-                            Console.WriteLine($"{topping.CalculateCalories():f2}");
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
+                    case "Topping":
+                        SelectToppingsAndCalculateCalories(inputArr);
                         break;
-                    case 2:
+                    case "Pizza":
                         break;
                 }
                 input = Console.ReadLine();
+            }
+        }
+
+        private static void SelectToppingsAndCalculateCalories(string[] inputArr)
+        {
+            var toppingType = char.ToUpper(inputArr[1][0]) + inputArr[1].Substring(1);
+            var toppingWeight = int.Parse(inputArr[2]);
+
+            try
+            {
+                var topping = new Topping(toppingType, toppingWeight);
+                Console.WriteLine($"{topping.CalculateCalories():f2}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        private static void SelectDoughTypeAndCalcualteCalories(string[] inputArr)
+        {
+            var flourType = char.ToUpper(inputArr[1][0]) + inputArr[1].Substring(1);
+            var bakingTechnique = char.ToUpper(inputArr[2][0]) + inputArr[2].Substring(1);
+            var doughtWeight = int.Parse(inputArr[3]);
+
+            try
+            {
+                var dough = new Dough(flourType, bakingTechnique, doughtWeight);
+                Console.WriteLine($"{dough.CalculateCalories():f2}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
     }

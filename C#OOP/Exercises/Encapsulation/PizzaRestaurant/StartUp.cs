@@ -6,6 +6,11 @@ namespace PizzaRestaurant
     {
         static void Main(string[] args)
         {
+            var pizzaName = Console.ReadLine().Split()[1];
+            var pizza = new Pizza(pizzaName);
+
+            var exceptions = new List<Exception>();
+
             var input = Console.ReadLine();
 
             while (input != "END")
@@ -15,47 +20,60 @@ namespace PizzaRestaurant
                 switch (inputArr[0])
                 {
                     case "Dough":
-                        SelectDoughTypeAndCalcualteCalories(inputArr);
+                        SelectDough(inputArr, pizza, exceptions);
+
+                        if (exceptions.Any())
+                        {
+                            return;
+                        }
+
                         break;
                     case "Topping":
-                        SelectToppingsAndCalculateCalories(inputArr);
-                        break;
-                    case "Pizza":
+                        SelectTopping(inputArr, pizza, exceptions);
+
+                        if (exceptions.Any())
+                        {
+                            return;
+                        }
                         break;
                 }
                 input = Console.ReadLine();
             }
+
+            Console.WriteLine($"{pizza.Name} - {pizza.TotalCalories:f2} Calories.");
         }
 
-        private static void SelectToppingsAndCalculateCalories(string[] inputArr)
+        private static void SelectTopping(string[] inputArr, Pizza pizza, List<Exception> exceptions)
         {
-            var toppingType = char.ToUpper(inputArr[1][0]) + inputArr[1].Substring(1);
+            var toppingType = inputArr[1].ToLower();
             var toppingWeight = int.Parse(inputArr[2]);
 
             try
             {
                 var topping = new Topping(toppingType, toppingWeight);
-                Console.WriteLine($"{topping.CalculateCalories():f2}");
+                pizza.AddTopping(topping);
             }
             catch (Exception e)
             {
+                exceptions.Add(e);
                 Console.WriteLine(e.Message);
             }
         }
 
-        private static void SelectDoughTypeAndCalcualteCalories(string[] inputArr)
+        private static void SelectDough(string[] inputArr, Pizza pizza, List<Exception> exceptions)
         {
-            var flourType = char.ToUpper(inputArr[1][0]) + inputArr[1].Substring(1);
-            var bakingTechnique = char.ToUpper(inputArr[2][0]) + inputArr[2].Substring(1);
+            var flourType = inputArr[1].ToLower();
+            var bakingTechnique = inputArr[2].ToLower();
             var doughtWeight = int.Parse(inputArr[3]);
 
             try
             {
                 var dough = new Dough(flourType, bakingTechnique, doughtWeight);
-                Console.WriteLine($"{dough.CalculateCalories():f2}");
+                pizza.Dough = dough;
             }
             catch (Exception e)
             {
+                exceptions.Add(e);
                 Console.WriteLine(e.Message);
             }
         }

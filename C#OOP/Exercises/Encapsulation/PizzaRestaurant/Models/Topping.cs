@@ -5,6 +5,7 @@
 
         private const string InvalidToppingExceptionMessage = "Cannot place {0} on top of your pizza.";
         private const string InvalidWeightExceptionMessage = "{0} weight should be in the range [1..50].";
+        private const int BaseCaloriesPerGram = 2;
 
         private string _toppingType;
         private int _weight;
@@ -22,7 +23,7 @@
             {
                 if (!IngridientsHelper.Toppings.ContainsKey(value))
                 {
-                    throw new ArgumentException(string.Format(InvalidToppingExceptionMessage, value));
+                    throw new ArgumentException(string.Format(InvalidToppingExceptionMessage, char.ToUpper(value[0]) + value.Substring(1)));
                 }
 
                 _toppingType = value;
@@ -36,13 +37,13 @@
             {
                 if (value < 1 || value > 50)
                 {                    
-                    throw new ArgumentException(string.Format(InvalidWeightExceptionMessage, _toppingType));
+                    throw new ArgumentException(string.Format(InvalidWeightExceptionMessage, char.ToUpper(_toppingType[0]) + _toppingType.Substring(1)));
                 }
 
                 _weight = value;
             }
         }
 
-        public double CalculateCalories() => 2 * _weight * IngridientsHelper.Toppings[_toppingType];        
+        public double CalculateCalories() => BaseCaloriesPerGram * _weight * IngridientsHelper.Toppings[_toppingType];        
     }
 }

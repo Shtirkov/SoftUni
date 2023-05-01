@@ -6,76 +6,48 @@ namespace PizzaRestaurant
     {
         static void Main(string[] args)
         {
-            var pizzaName = Console.ReadLine().Split()[1];
-            var pizza = new Pizza(pizzaName);
-
-            var exceptions = new List<Exception>();
-
-            var input = Console.ReadLine();
-
-            while (input != "END")
+            try
             {
-                var inputArr = input.Split();
+                var pizzaArgs = Console.ReadLine().Split(' ');
+                var pizza = new Pizza(pizzaArgs[1]);
 
-                switch (inputArr[0])
+                var doughArgs = Console.ReadLine().Split(' ');
+                SelectDough(doughArgs, pizza);
+
+                var input = Console.ReadLine();
+
+                while (input != "END")
                 {
-                    case "Dough":
-                        SelectDough(inputArr, pizza, exceptions);
+                    var toppingArgs = input.Split(' ');
 
-                        if (exceptions.Any())
-                        {
-                            return;
-                        }
+                    SelectTopping(toppingArgs, pizza);
 
-                        break;
-                    case "Topping":
-                        SelectTopping(inputArr, pizza, exceptions);
-
-                        if (exceptions.Any())
-                        {
-                            return;
-                        }
-                        break;
+                    input = Console.ReadLine();
                 }
-                input = Console.ReadLine();
-            }
 
-            Console.WriteLine($"{pizza.Name} - {pizza.TotalCalories:f2} Calories.");
-        }
-
-        private static void SelectTopping(string[] inputArr, Pizza pizza, List<Exception> exceptions)
-        {
-            var toppingType = inputArr[1].ToLower();
-            var toppingWeight = int.Parse(inputArr[2]);
-
-            try
-            {
-                var topping = new Topping(toppingType, toppingWeight);
-                pizza.AddTopping(topping);
+                Console.WriteLine($"{pizza.Name} - {pizza.TotalCalories:f2} Calories.");
             }
             catch (Exception e)
             {
-                exceptions.Add(e);
                 Console.WriteLine(e.Message);
             }
         }
 
-        private static void SelectDough(string[] inputArr, Pizza pizza, List<Exception> exceptions)
+        private static void SelectTopping(string[] toppingArgs, Pizza pizza)
         {
-            var flourType = inputArr[1].ToLower();
-            var bakingTechnique = inputArr[2].ToLower();
-            var doughtWeight = int.Parse(inputArr[3]);
+            var toppingType = toppingArgs[1].ToLower();
+            var toppingWeight = int.Parse(toppingArgs[2]);
 
-            try
-            {
-                var dough = new Dough(flourType, bakingTechnique, doughtWeight);
-                pizza.Dough = dough;
-            }
-            catch (Exception e)
-            {
-                exceptions.Add(e);
-                Console.WriteLine(e.Message);
-            }
+            pizza.AddTopping(new Topping(toppingType, toppingWeight));
+        }
+
+        private static void SelectDough(string[] doughArgs, Pizza pizza)
+        {
+            var flourType = doughArgs[1].ToLower();
+            var bakingTechnique = doughArgs[2].ToLower();
+            var doughtWeight = int.Parse(doughArgs[3]);
+
+            pizza.Dough = new Dough(flourType, bakingTechnique, doughtWeight);
         }
     }
 }

@@ -4,6 +4,8 @@
     {
         private const string InvalidPizzaNameExceptionMessage = "Pizza name should be between 1 and 15 symbols.";
         private const string TooManyToppingsExceptionMessage = "Number of toppings should be in range [0..10].";
+        private const int PizzaNameMaxLenght = 15;
+        private const int MaximumToppingsCount = 10;
 
         private string _name;
         private ICollection<Topping> _toppings;
@@ -19,7 +21,7 @@
             get => _name;
             private set
             {
-                if (string.IsNullOrWhiteSpace(value) || value.Length > 15)
+                if (string.IsNullOrWhiteSpace(value) || value.Length > PizzaNameMaxLenght)
                 {
                     throw new ArgumentException(InvalidPizzaNameExceptionMessage);
                 }
@@ -32,11 +34,9 @@
 
         public double TotalCalories => Dough.CalculateCalories() + _toppings.ToList().Sum(topping => topping.CalculateCalories());
 
-        public int NumberOfToppings => _toppings.Count;
-
         public void AddTopping(Topping topping)
         {
-            if (_toppings.Count == 10)
+            if (_toppings.Count == MaximumToppingsCount)
             {
                 throw new ArgumentException(TooManyToppingsExceptionMessage);
             }

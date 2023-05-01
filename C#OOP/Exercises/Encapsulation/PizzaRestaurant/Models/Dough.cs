@@ -1,10 +1,12 @@
-﻿namespace PizzaRestaurant.Models
+﻿namespace PizzaRestaurant.Models 
 {
     public class Dough
     {
         private const string InvalidFlourTypeExceptionMessage = "Invalid type of dough.";
         private const string InvalidWeightExceptionMessage = "Dough weight should be in the range [1..200].";
         private const int BaseCaloriesPerGram = 2;
+        private const int MinDoughWeight = 1;
+        private const int MaxDoughWeight = 200;
 
         private string _flourType;
         private string _bakingTechnique;
@@ -50,7 +52,7 @@
             get => _weight;
             private set
             {
-                if (value < 1 || value > 200)
+                if (value < MinDoughWeight || value > MaxDoughWeight)
                 {
                     throw new ArgumentException(InvalidWeightExceptionMessage);
                 }

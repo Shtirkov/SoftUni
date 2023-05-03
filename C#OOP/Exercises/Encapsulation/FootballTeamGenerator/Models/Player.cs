@@ -106,7 +106,5 @@
                 _shooting = value;
             }
         }
-
-        //public double OveralSkillLevel => (double)(_endurance + _sprint + _dribble + _passing + _shooting) / 5;
     }
 }

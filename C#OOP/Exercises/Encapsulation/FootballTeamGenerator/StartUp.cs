@@ -61,7 +61,6 @@ namespace FootballTeamGenerator
                             }
 
                             teams.FirstOrDefault(team => team.Name == teamName).RemovePlayer(commandArgs[2]);
-
                         }
                         catch (Exception e)
                         {
@@ -75,7 +74,7 @@ namespace FootballTeamGenerator
                             {
                                 throw new InvalidOperationException(string.Format(NonExistingTeamExceptionMessage, teamName));
                             }
-                            Console.WriteLine($"{teamName} - {teams.FirstOrDefault(team => team.Name == teamName).Rating}");
+                            Console.WriteLine(teams.FirstOrDefault(team => team.Name == teamName));
                         }
                         catch (Exception e )
                         {

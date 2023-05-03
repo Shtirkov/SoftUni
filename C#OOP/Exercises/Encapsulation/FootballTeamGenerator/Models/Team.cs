@@ -40,8 +40,7 @@
                 throw new ArgumentException(string.Format(MissingPlayerExceptionMessage, playerName, _name));
             }
 
-            var playerToRemove = _players.FirstOrDefault(player => player.Name == playerName);  
-            _players.Remove(playerToRemove);
+            _players.Remove(_players.FirstOrDefault(player => player.Name == playerName));
         }
 
         private int GetTeamRating()
@@ -54,5 +53,7 @@
         }
 
         private double CalculatePlayerOverallSkill(Player player) => (double)(player.Endurance + player.Sprint + player.Dribble + player.Passing + player.Shooting) / 5;
+
+        public override string ToString() => $"{Name} - {Rating}";
     }
 }

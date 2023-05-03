@@ -13,7 +13,7 @@
             _players = new List<Player>();
         }
 
-        public int NumberOfPlayers { get; set; }
+        public int NumberOfPlayers => _players.Count;
 
         public string Name
         {
@@ -50,7 +50,9 @@
             {
                 return 0;
             }
-            return (int)Math.Round(_players.Sum(player => player.OveralSkillLevel));
+            return (int)Math.Round(_players.Average(player => CalculatePlayerOverallSkill(player)));
         }
+
+        private double CalculatePlayerOverallSkill(Player player) => (double)(player.Endurance + player.Sprint + player.Dribble + player.Passing + player.Shooting) / 5;
     }
 }

@@ -3,6 +3,8 @@
     public class Player
     {
         private const string InvalidStatExceptionMessage = "{0} should be between 0 and 100.";
+        private const int StatMinValue = 0;
+        private const int StatMaxValue = 100;
 
         private string _name;
         private int _endurance;
@@ -40,7 +42,7 @@
             get => _endurance;
             private set
             {
-                if (value < 0 || value > 100)
+                if (value < StatMinValue || value > StatMaxValue)
                 {
                     throw new ArgumentException(string.Format(InvalidStatExceptionMessage, "Endurance"));
                 }
@@ -54,7 +56,7 @@
             get => _sprint;
             private set
             {
-                if (value < 0 || value > 100)
+                if (value < StatMinValue || value > StatMaxValue)
                 {
                     throw new ArgumentException(string.Format(InvalidStatExceptionMessage, "Sprint"));
                 }
@@ -68,7 +70,7 @@
             get => _dribble;
             private set
             {
-                if (value < 0 || value > 100)
+                if (value < StatMinValue || value > StatMaxValue)
                 {
                     throw new ArgumentException(string.Format(InvalidStatExceptionMessage, "Dribble"));
                 }
@@ -82,7 +84,7 @@
             get => _passing;
             private set
             {
-                if (value < 0 || value > 100)
+                if (value < StatMinValue || value > StatMaxValue)
                 {
                     throw new ArgumentException(string.Format(InvalidStatExceptionMessage, "Passing"));
                 }
@@ -96,7 +98,7 @@
             get => _shooting;
             private set
             {
-                if (value < 0 || value > 100)
+                if (value < StatMinValue || value > StatMaxValue)
                 {
                     throw new ArgumentException(string.Format(InvalidStatExceptionMessage, "Shooting"));
                 }
@@ -105,6 +107,6 @@
             }
         }
 
-        public double OveralSkillLevel => (double)(_endurance + _sprint + _dribble + _passing + _shooting) / 5;
+        //public double OveralSkillLevel => (double)(_endurance + _sprint + _dribble + _passing + _shooting) / 5;
     }
 }

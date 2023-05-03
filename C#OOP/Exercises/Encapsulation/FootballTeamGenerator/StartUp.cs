@@ -4,6 +4,8 @@ namespace FootballTeamGenerator
 {
     public class StartUp
     {
+        private const string NonExistingTeamExceptionMessage = "Team {0} does not exist.";
+
         static void Main(string[] args)
         {
             var command = Console.ReadLine();
@@ -11,7 +13,7 @@ namespace FootballTeamGenerator
 
             while (command != "END")
             {
-                var commandArgs = command.Split(';', StringSplitOptions.RemoveEmptyEntries);
+                var commandArgs = command.Split(';');
                 var teamName = commandArgs[1];
 
                 switch (commandArgs[0])
@@ -21,7 +23,7 @@ namespace FootballTeamGenerator
                         {
                             teams.Add(new Team(teamName));
                         }
-                        catch (Exception e )
+                        catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
@@ -40,7 +42,7 @@ namespace FootballTeamGenerator
 
                             if (!teams.Any(team => team.Name == teamName))
                             {
-                                throw new InvalidOperationException($"Team {teamName} does not exist.");
+                                throw new InvalidOperationException(string.Format(NonExistingTeamExceptionMessage,teamName));
                             }
 
                             teams.FirstOrDefault(team => team.Name == teamName).AddPlayer(player);
@@ -53,7 +55,13 @@ namespace FootballTeamGenerator
                     case "Remove":
                         try
                         {
+                            if (!teams.Any(team => team.Name == teamName))
+                            {
+                                throw new InvalidOperationException(string.Format(NonExistingTeamExceptionMessage, teamName));
+                            }
+
                             teams.FirstOrDefault(team => team.Name == teamName).RemovePlayer(commandArgs[2]);
+
                         }
                         catch (Exception e)
                         {
@@ -61,9 +69,19 @@ namespace FootballTeamGenerator
                         }
                         break;
                     case "Rating":
-                        Console.WriteLine($"{teamName} - {teams.FirstOrDefault(team => team.Name == teamName).Rating}");
+                        try
+                        {
+                            if (!teams.Any(team => team.Name == teamName))
+                            {
+                                throw new InvalidOperationException(string.Format(NonExistingTeamExceptionMessage, teamName));
+                            }
+                            Console.WriteLine($"{teamName} - {teams.FirstOrDefault(team => team.Name == teamName).Rating}");
+                        }
+                        catch (Exception e )
+                        {
+                            Console.WriteLine(e.Message);
+                        }                       
                         break;
-
                 }
 
                 command = Console.ReadLine();
@@ -71,4 +89,3 @@ namespace FootballTeamGenerator
         }
     }
 }
-

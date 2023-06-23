@@ -4,8 +4,8 @@
     {
         static void Main(string[] args)
         {
-            var ids = new List<string>();
-            var fakeIds = new List<string>();
+            var allBirthdates = new List<string>();
+            var filteredBirthdates = new List<string>();
 
             var input = Console.ReadLine();
 
@@ -13,22 +13,22 @@
             {
                 var data = input.Split();
 
-                if (data.Length == 3)
+                if (data[0] == "Citizen")
                 {
-                    ids.Add(data[2]);
+                    allBirthdates.Add(data[4]);
                 }
-                else if (data.Length == 2)
+                else if (data[0] == "Pet")
                 {
-                    ids.Add(data[1]);
+                    allBirthdates.Add(data[2]);
                 }
 
                 input = Console.ReadLine();
             }
 
-            var fakeIdsLastDigits = Console.ReadLine();
+            var yearForFiltering = Console.ReadLine();
 
-            fakeIds = ids.Where(id => id.EndsWith(fakeIdsLastDigits)).ToList();
-            fakeIds.ForEach(id => Console.WriteLine(id));
+            filteredBirthdates = allBirthdates.Where(birthdate => birthdate.EndsWith(yearForFiltering)).ToList();
+            filteredBirthdates.ForEach(birthdate => Console.WriteLine(birthdate));
         }
     }
 }

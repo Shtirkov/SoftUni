@@ -2,13 +2,13 @@
 
 namespace MilitaryElite.Models
 {
-    public class Solider : ISolider
+    public class Soldier : ISoldier
     {
         public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public Solider(string id, string firstName, string lastName)
+        public Soldier(string id, string firstName, string lastName)
         {
             Id = id;
             FirstName = firstName;

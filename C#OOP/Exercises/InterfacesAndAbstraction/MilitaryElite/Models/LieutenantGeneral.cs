@@ -3,7 +3,7 @@ using System.Text;
 
 namespace MilitaryElite.Models
 {
-    public class LieutenantGeneral : ISolider, IPrivate, ILieutenantGeneral
+    public class LieutenantGeneral : ISoldier, IPrivate, ILieutenantGeneral
     {
         public string Id { get; set; }
         public string FirstName { get; set; }

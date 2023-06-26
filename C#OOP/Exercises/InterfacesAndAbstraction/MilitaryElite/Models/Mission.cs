@@ -1,4 +1,5 @@
-﻿using MilitaryElite.Interfaces;
+﻿using MilitaryElite.Enums;
+using MilitaryElite.Interfaces;
 
 namespace MilitaryElite.Models
 {
@@ -14,5 +15,8 @@ namespace MilitaryElite.Models
         }
 
         public override string ToString() => $"  Code Name: {CodeName} State: {State}".TrimEnd();
+
+        public void CompleteMission() => State = MissionStates.Finished.ToString();
+        
     }
 }

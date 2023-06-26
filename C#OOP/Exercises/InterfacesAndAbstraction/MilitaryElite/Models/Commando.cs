@@ -3,7 +3,7 @@ using System.Text;
 
 namespace MilitaryElite.Models
 {
-    public class Commando : ISolider, IPrivate, ISpecialisedSolider, ICommando
+    public class Commando : ISoldier, IPrivate, ISpecialisedSolider, ICommando
     {
         public string Id { get; set; }
         public string FirstName { get; set; }
@@ -12,7 +12,7 @@ namespace MilitaryElite.Models
         public string Corps { get; set; }
         public List<IMission> Missions { get; set; }
 
-        public Commando(string id, string firstName, string lastName, decimal salary, string corps, params string[] missions)
+        public Commando(string id, string firstName, string lastName, decimal salary, string corps)
         {
             Id = id;
             FirstName = firstName;
@@ -22,8 +22,6 @@ namespace MilitaryElite.Models
             Missions = new List<IMission>();
         }
 
-        public void CompleteMission(string missionName) => Missions.FirstOrDefault(m => m.CodeName == missionName).State = "Finished";
-
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -32,7 +30,7 @@ namespace MilitaryElite.Models
             sb.AppendLine("Missions:");
             Missions.ForEach(m => sb.AppendLine(m.ToString()));
 
-            return sb.ToString();
+            return sb.ToString().TrimEnd();
         }
     }
 }

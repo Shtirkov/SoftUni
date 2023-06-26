@@ -2,7 +2,7 @@
 
 namespace MilitaryElite.Models
 {
-    public class SpecialisedSolider : ISolider, IPrivate, ISpecialisedSolider
+    public class SpecialisedSolider : ISoldier, IPrivate, ISpecialisedSolider
     {
         public string Id { get; set; }
         public string FirstName { get; set; }

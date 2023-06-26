@@ -3,7 +3,7 @@ using System.Text;
 
 namespace MilitaryElite.Models
 {
-    public class Spy : ISolider, ISpy
+    public class Spy : ISoldier, ISpy
     {
         public string Id { get; set; }
         public string FirstName { get; set; }

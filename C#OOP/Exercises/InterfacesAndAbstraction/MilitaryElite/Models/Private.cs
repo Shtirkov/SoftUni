@@ -2,7 +2,7 @@
 
 namespace MilitaryElite.Models
 {
-    public class Private : ISolider, IPrivate
+    public class Private : ISoldier, IPrivate
     {
         public string Id { get; set; }
         public string FirstName { get; set; }

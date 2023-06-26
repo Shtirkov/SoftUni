@@ -1,4 +1,5 @@
-﻿using MilitaryElite.Interfaces;
+﻿using MilitaryElite.Enums;
+using MilitaryElite.Interfaces;
 using MilitaryElite.Models;
 
 namespace MilitaryElite
@@ -8,12 +9,12 @@ namespace MilitaryElite
         static void Main(string[] args)
         {
             var input = Console.ReadLine();
-            var privates = new List<ISolider>();
-            var allSoliders = new List<ISolider>();
+            var privates = new List<ISoldier>();
+            var allSoliders = new List<ISoldier>();
 
             while (input != "End")
             {
-                var data = input.Split(' ');
+                var data = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 var soliderType = data[0];
 
                 if (soliderType == "Private")
@@ -34,18 +35,18 @@ namespace MilitaryElite
                     var firstName = data[2];
                     var lastName = data[3];
                     var salary = decimal.Parse(data[4]);
-
+                    var privateIds = data.Skip(5).ToList();
                     var lieutenantGeneral = new LieutenantGeneral(id, firstName, lastName, salary);
 
-                    for (int i = 4; i < data.Length; i++)
+                    privateIds.ForEach(id =>
                     {
-                        var currentPrivate = privates.FirstOrDefault(p => p.Id == data[i]);
+                        var currentPrivate = privates.FirstOrDefault(p => p.Id == id);
 
                         if (currentPrivate != null)
                         {
                             lieutenantGeneral.Privates.Add((IPrivate)currentPrivate);
                         }
-                    }
+                    });
 
                    allSoliders.Add(lieutenantGeneral);
                 }
@@ -57,7 +58,7 @@ namespace MilitaryElite
                     var salary = decimal.Parse(data[4]);
                     var corps = data[5];
 
-                    if (corps == "Marines" || corps == "Airforces")
+                    if (corps == Corpses.Marines.ToString() || corps == Corpses.Airforces.ToString())
                     {
                         var engineer = new Engineer(id, firstName, lastName, salary, corps);
 
@@ -85,7 +86,7 @@ namespace MilitaryElite
                     var salary = decimal.Parse(data[4]);
                     var corps = data[5];
 
-                    if (corps == "Marines" || corps == "Airforces")
+                    if (corps == Corpses.Marines.ToString() || corps == Corpses.Airforces.ToString())
                     {
                         var comando = new Commando(id, firstName, lastName, salary, corps);
 
@@ -98,7 +99,7 @@ namespace MilitaryElite
                                 var missionName = missions[i];
                                 var missionState = missions[i + 1];
 
-                                if (missionState == "inProgress" || missionState == "Finished")
+                                if (missionState == MissionStates.inProgress.ToString() || missionState == MissionStates.Finished.ToString())
                                 {
                                     var mission = new Mission(missionName, missionState);
                                     comando.Missions.Add(mission);

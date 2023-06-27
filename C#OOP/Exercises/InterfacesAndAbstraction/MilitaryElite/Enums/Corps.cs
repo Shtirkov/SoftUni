@@ -1,6 +1,6 @@
 ﻿namespace MilitaryElite.Enums
 {
-    public enum Corpses
+    public enum Corps
     {
         Airforces = 0,
         Marines = 1

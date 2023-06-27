@@ -3,32 +3,23 @@ using System.Text;
 
 namespace MilitaryElite.Models
 {
-    public class Engineer : ISoldier, IPrivate, ISpecialisedSolider, IEngineer
+    public class Engineer : SpecialisedSolider, IEngineer
     {
-        public string Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public decimal Salary { get; set; }
-        public string Corps { get; set; }
-        public List<IRepair> Repairs { get; set; }
+        public ICollection<IRepair> Repairs { get; set; }
 
-        public Engineer(string id, string firstName, string lastName, decimal salary, string corps)
+        public Engineer(int id, string firstName, string lastName, decimal salary, string corps, ICollection<IRepair> repairs)
+            : base(id, firstName, lastName, salary, corps)
         {
-            Id = id;
-            FirstName = firstName;
-            LastName = lastName;
-            Salary = salary;
-            Corps = corps;
-            Repairs = new List<IRepair>();
+            Repairs = repairs;
         }
 
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.AppendLine($"Name: {FirstName} {LastName} Id: {Id} Salary: {Salary:f2}");
+            sb.AppendLine(base.ToString());
             sb.AppendLine($"Corps: {Corps}");
             sb.AppendLine("Repairs:");
-            Repairs.ForEach(r => sb.AppendLine(r.ToString()));
+            Repairs.ToList().ForEach(r => sb.AppendLine(r.ToString()));
 
             return sb.ToString().TrimEnd();
         }

@@ -2,6 +2,6 @@
 {
     public interface IEngineer
     {
-        public List<IRepair> Repairs { get; set; }
+        public ICollection<IRepair> Repairs { get; set; }
     }
 }

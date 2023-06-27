@@ -13,7 +13,7 @@ namespace MilitaryElite.Models
             HoursWorked = hoursWorked;
         }
 
-        public override string ToString() => $"  Part Name: {PartName} Hours Worked: {HoursWorked}".TrimEnd();
+        public override string ToString() => $"Part Name: {PartName} Hours Worked: {HoursWorked}".TrimEnd();
 
     }
 }

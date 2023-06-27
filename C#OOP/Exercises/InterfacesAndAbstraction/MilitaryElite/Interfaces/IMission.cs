@@ -1,4 +1,6 @@
-﻿namespace MilitaryElite.Interfaces
+﻿using MilitaryElite.Enums;
+
+namespace MilitaryElite.Interfaces
 {
     public interface IMission
     {

@@ -14,9 +14,9 @@ namespace MilitaryElite.Models
             State = state;
         }
 
-        public override string ToString() => $"  Code Name: {CodeName} State: {State}".TrimEnd();
+        public override string ToString() => $"Code Name: {CodeName} State: {State}".TrimEnd();
 
-        public void CompleteMission() => State = MissionStates.Finished.ToString();
+        public void CompleteMission() => State = MissionState.Finished.ToString();
         
     }
 }

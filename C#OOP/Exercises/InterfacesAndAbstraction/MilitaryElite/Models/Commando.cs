@@ -3,32 +3,23 @@ using System.Text;
 
 namespace MilitaryElite.Models
 {
-    public class Commando : ISoldier, IPrivate, ISpecialisedSolider, ICommando
+    public class Commando : SpecialisedSolider, ICommando
     {
-        public string Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public decimal Salary { get; set; }
-        public string Corps { get; set; }
-        public List<IMission> Missions { get; set; }
+        public ICollection<IMission> Missions { get; set; }
 
-        public Commando(string id, string firstName, string lastName, decimal salary, string corps)
+        public Commando(int id, string firstName, string lastName, decimal salary, string corps, ICollection<IMission> missions)
+            : base(id, firstName, lastName, salary, corps)
         {
-            Id = id;
-            FirstName = firstName;
-            LastName = lastName;
-            Salary = salary;
-            Corps = corps;
-            Missions = new List<IMission>();
+            Missions = missions;
         }
 
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.AppendLine($"Name: {FirstName} {LastName} Id: {Id} Salary: {Salary:f2}");
+            sb.AppendLine(base.ToString());
             sb.AppendLine($"Corps: {Corps}");
             sb.AppendLine("Missions:");
-            Missions.ForEach(m => sb.AppendLine(m.ToString()));
+            Missions.ToList().ForEach(m => sb.AppendLine(m.ToString()));
 
             return sb.ToString().TrimEnd();
         }

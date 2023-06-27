@@ -3,29 +3,22 @@ using System.Text;
 
 namespace MilitaryElite.Models
 {
-    public class LieutenantGeneral : ISoldier, IPrivate, ILieutenantGeneral
-    {
-        public string Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public decimal Salary { get; set; }
-        public List<IPrivate> Privates { get; set; }
+    public class LieutenantGeneral : Private, ILieutenantGeneral
+    {       
+        public ICollection<IPrivate> Privates { get; set; }
 
-        public LieutenantGeneral(string id, string firstName, string lastName, decimal salary, params string[] privateIds)
-        {
-            Id = id;
-            FirstName = firstName;
-            LastName = lastName;
-            Salary = salary;
-            Privates = new List<IPrivate>();
+        public LieutenantGeneral(int id, string firstName, string lastName, decimal salary, ICollection<IPrivate> privates)
+            :base(id, firstName, lastName, salary)
+        {            
+            Privates = privates;
         }
 
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.AppendLine($"Name: {FirstName} {LastName} Id: {Id} Salary: {Salary:f2}");
+            sb.AppendLine(base.ToString());
             sb.AppendLine("Privates:");
-            Privates.ForEach(p => sb.AppendLine($"  {p.ToString()}"));
+            Privates.ToList().ForEach(p => sb.AppendLine($"  {p.ToString()}"));
 
             return sb.ToString().TrimEnd();
         }

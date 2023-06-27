@@ -2,6 +2,6 @@
 {
     public interface ILieutenantGeneral
     {
-        public List<IPrivate> Privates { get; set; }
+        public ICollection<IPrivate> Privates { get; set; }
     }
 }

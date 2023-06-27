@@ -1,6 +1,6 @@
 ﻿namespace MilitaryElite.Enums
 {
-    public enum MissionStates
+    public enum MissionState
     {
         Finished = 0,
         inProgress = 1

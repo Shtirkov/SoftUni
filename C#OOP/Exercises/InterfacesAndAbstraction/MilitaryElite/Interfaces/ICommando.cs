@@ -2,6 +2,6 @@
 {
     public interface ICommando
     {
-        public List<IMission> Missions { get; set; }
+        public ICollection<IMission> Missions { get; set; }
     }
 }

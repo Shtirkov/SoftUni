@@ -9,123 +9,112 @@ namespace MilitaryElite
         static void Main(string[] args)
         {
             var input = Console.ReadLine();
-            var privates = new List<ISoldier>();
-            var allSoliders = new List<ISoldier>();
+            var myArmy = new List<ISoldier>();
 
             while (input != "End")
             {
-                var data = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                var soliderType = data[0];
+                var soldierInfo = input.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
+                var specialisation = soldierInfo[0];
+                var id = int.Parse(soldierInfo[1]);
+                var firstName = soldierInfo[2];
+                var lastName = soldierInfo[3];
+                var salary = 0m;
+                var corps = "";
 
-                if (soliderType == "Private")
+                if (specialisation == "Private")
                 {
-                    var id = data[1];
-                    var firstName = data[2];
-                    var lastName = data[3];
-                    var salary = decimal.Parse(data[4]);
-
+                    salary = decimal.Parse(soldierInfo[4]);
                     var @private = new Private(id, firstName, lastName, salary);
-                    privates.Add(@private);
 
-                    allSoliders.Add(@private);
+                    myArmy.Add(@private);
                 }
-                else if (soliderType == "LieutenantGeneral")
+                else if (specialisation == "LieutenantGeneral")
                 {
-                    var id = data[1];
-                    var firstName = data[2];
-                    var lastName = data[3];
-                    var salary = decimal.Parse(data[4]);
-                    var privateIds = data.Skip(5).ToList();
-                    var lieutenantGeneral = new LieutenantGeneral(id, firstName, lastName, salary);
+                    salary = decimal.Parse(soldierInfo[4]);
+
+                    var privateIds = soldierInfo.Skip(5).Select(int.Parse).ToList();
+                    var privates = new List<IPrivate>();
 
                     privateIds.ForEach(id =>
                     {
-                        var currentPrivate = privates.FirstOrDefault(p => p.Id == id);
+                        var currentSoldier = (IPrivate)myArmy.FirstOrDefault(s => s.Id == id);
 
-                        if (currentPrivate != null)
+                        if (currentSoldier != null)
                         {
-                            lieutenantGeneral.Privates.Add((IPrivate)currentPrivate);
+                            privates.Add(currentSoldier);
                         }
                     });
 
-                   allSoliders.Add(lieutenantGeneral);
+                    var lieutenantGeneral = new LieutenantGeneral(id, firstName, lastName, salary, privates);
+
+                    myArmy.Add(lieutenantGeneral);
                 }
-                else if (soliderType == "Engineer")
+                else if (specialisation == "Engineer")
                 {
-                    var id = data[1];
-                    var firstName = data[2];
-                    var lastName = data[3];
-                    var salary = decimal.Parse(data[4]);
-                    var corps = data[5];
+                    salary = decimal.Parse(soldierInfo[4]);
+                    corps = soldierInfo[5];
 
-                    if (corps == Corpses.Marines.ToString() || corps == Corpses.Airforces.ToString())
+                    if (corps == Corps.Airforces.ToString() || corps == Corps.Marines.ToString())
                     {
-                        var engineer = new Engineer(id, firstName, lastName, salary, corps);
+                        var repairsInfo = soldierInfo.Skip(6).ToList();
+                        var repairs = new List<IRepair>();
 
-                        var tasks = data.Skip(6).ToList();
-
-                        if (tasks.Count != 0)
+                        if (repairsInfo.Count > 0)
                         {
-                            for (int i = 0; i <= tasks.Count / 2; i += 2)
+                            for (int i = 0; i <= repairsInfo.Count - 1; i += 2)
                             {
-                                var partName = tasks[i];
-                                var hours = int.Parse(tasks[i + 1]);
-                                var repair = new Repair(partName, hours);
-                                engineer.Repairs.Add(repair);
+                                var repairPart = repairsInfo[i];
+                                var repairHours = int.Parse(repairsInfo[i + 1]);
+                                var repair = new Repair(repairPart, repairHours);
+                                repairs.Add(repair);
                             }
                         }
 
-                        allSoliders.Add(engineer);
+                        var engineer = new Engineer(id, firstName, lastName, salary, corps, repairs);
+                        myArmy.Add(engineer);
                     }
                 }
-                else if (soliderType == "Commando")
+                else if (specialisation == "Commando")
                 {
-                    var id = data[1];
-                    var firstName = data[2];
-                    var lastName = data[3];
-                    var salary = decimal.Parse(data[4]);
-                    var corps = data[5];
+                    salary = decimal.Parse(soldierInfo[4]);
+                    corps = soldierInfo[5];
 
-                    if (corps == Corpses.Marines.ToString() || corps == Corpses.Airforces.ToString())
+                    if (corps == Corps.Airforces.ToString() || corps == Corps.Marines.ToString())
                     {
-                        var comando = new Commando(id, firstName, lastName, salary, corps);
+                        var missionsInfo = soldierInfo.Skip(6).ToList();
+                        var missions = new List<IMission>();
 
-                        var missions = data.Skip(6).ToList();
-
-                        if (missions.Count != 0)
+                        if (missionsInfo.Count > 0)
                         {
-                            for (int i = 0; i <= missions.Count / 2; i += 2)
+                            for (int i = 0; i <= missionsInfo.Count - 1; i += 2)
                             {
-                                var missionName = missions[i];
-                                var missionState = missions[i + 1];
+                                var missionName = missionsInfo[i];
+                                var missionState = missionsInfo[i + 1];
 
-                                if (missionState == MissionStates.inProgress.ToString() || missionState == MissionStates.Finished.ToString())
+                                if (missionState == MissionState.inProgress.ToString() || missionState == MissionState.Finished.ToString())
                                 {
                                     var mission = new Mission(missionName, missionState);
-                                    comando.Missions.Add(mission);
+                                    missions.Add(mission);
                                 }
                             }
-                        }                        
+                        }
 
-                        allSoliders.Add(comando);
+                        var commando = new Commando(id, firstName, lastName, salary, corps, missions);
+                        myArmy.Add(commando);
                     }
                 }
-                else if (soliderType == "Spy")
+                else if (specialisation == "Spy")
                 {
-                    var id = data[1];
-                    var firstName = data[2];
-                    var lastName = data[3];
-                    var codeNumber = int.Parse(data[4]);
+                    var codeNumber = int.Parse(soldierInfo[4]);
 
                     var spy = new Spy(id, firstName, lastName, codeNumber);
-
-                    allSoliders.Add(spy);
+                    myArmy.Add(spy);
                 }
 
                 input = Console.ReadLine();
             }
 
-            allSoliders.ForEach(s => Console.WriteLine(s.ToString()));
+            myArmy.ForEach(s => Console.WriteLine(s));
         }
     }
 }

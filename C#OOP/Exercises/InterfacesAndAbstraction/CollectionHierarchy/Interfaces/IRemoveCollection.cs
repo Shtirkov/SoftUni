@@ -2,6 +2,6 @@
 {
     public interface IRemoveCollection
     {
-        public void Remove(string item);
+        public string Remove();
     }
 }

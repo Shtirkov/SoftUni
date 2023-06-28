@@ -1,8 +1,7 @@
 ﻿namespace CollectionHierarchy.Interfaces
 {
-    public class IMyList
+    public interface IMyList
     {
         public int Used { get; }
-
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IAddCollection
     {
-        public void Add(string item);
+        public int Add(string item);
     }
 }

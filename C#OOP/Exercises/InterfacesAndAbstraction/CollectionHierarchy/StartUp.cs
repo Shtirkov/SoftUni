@@ -1,4 +1,5 @@
 ﻿using CollectionHierarchy.Models;
+using System.Text;
 
 namespace CollectionHierarchy
 {
@@ -6,18 +7,37 @@ namespace CollectionHierarchy
     {
         static void Main(string[] args)
         {
-            var test = new AddCollection();
-            test.Add("d");
-            test.Add("c");
-            test.Add("b");
-            test.Add("a");
+            var addCollection = new AddCollection();
+            var addRemoveCollection = new AddRemoveCollection();
+            var myList = new MyList();
 
-            for (int i = 0; i < test.Length; i++)
+            var output = new StringBuilder();
+
+            var input = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
+            var countOfRemoveOperations = int.Parse(Console.ReadLine());
+
+            input.ForEach(x => output.Append($"{addCollection.Add(x)} "));
+            output.AppendLine();
+
+            input.ForEach(x => output.Append($"{addRemoveCollection.Add(x)} "));
+            output.AppendLine();
+
+            input.ForEach(x => output.Append($"{myList.Add(x)} "));
+            output.AppendLine();
+
+            for (int i = 0; i < countOfRemoveOperations; i++)
             {
-                //Console.WriteLine(test[i]);
+                output.Append($"{addRemoveCollection.Remove()} ");
             }
 
+            output.AppendLine();
 
+            for (int i = 0; i < countOfRemoveOperations; i++)
+            {
+                output.Append($"{myList.Remove()} ");
+            }
+
+            Console.WriteLine(output.ToString().TrimEnd());
         }
     }
 }

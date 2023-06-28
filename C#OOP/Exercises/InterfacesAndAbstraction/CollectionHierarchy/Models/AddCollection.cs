@@ -4,13 +4,14 @@ namespace CollectionHierarchy.Models
 {
     public class AddCollection : Collection, IAddCollection
     {
-        public void Add(string item)
+        public int Add(string item)
         {
-            var oldArr = Items;           
-            Resize();
-            oldArr.CopyTo(Items, 1);
-            Items[0] = item;
             Index++;
+            var oldArr = Items;
+            Resize();
+            oldArr.CopyTo(Items, 0);
+            Items[Index] = item;
+            return Index;
         }
     }
 }

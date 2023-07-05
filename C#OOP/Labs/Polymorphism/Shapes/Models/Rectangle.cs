@@ -19,28 +19,6 @@ namespace Shapes.Models
 
         public override double CalculatePerimeter() => 2 * (_width + _height);
 
-        public override string Draw()
-        {
-            DrawLine(_width);
-
-            for (int i = 1; i < _height - 1; ++i)
-            {
-                DrawLine(_width);
-            }
-            DrawLine(_width);
-
-            return _output.ToString();
-        }
-
-        private void DrawLine(double width)
-        {
-            _output.Append("*");
-
-            for (int i = 1; i < width - 1; ++i)
-            {
-                _output.Append("*");
-            }
-            _output.AppendLine("*");
-        }
+        public override string Draw() => base.Draw() + GetType().Name;
     }
 }

@@ -63,8 +63,6 @@ namespace Vehicles
 
         private void CreateVehicle()
         {
-            Vehicle vehicle = null;
-
             var vehicleInfo = Console.ReadLine().Split();
             var vehicleType = vehicleInfo[0];
             var vehicleFuelQuantity = double.Parse(vehicleInfo[1]);

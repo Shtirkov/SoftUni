@@ -31,14 +31,13 @@
             {
                 Console.WriteLine(_negativeFuelMessage);
             }
-            else if (TankCapacity < FuelQuantity + liters)
+            else if (TankCapacity - FuelQuantity < liters)
             {
                 Console.WriteLine(_notEnoughTankSpaceMessage, liters);
             }
             else
             {
                 FuelQuantity += liters;
-                TankCapacity -= liters;
             }
         }
 

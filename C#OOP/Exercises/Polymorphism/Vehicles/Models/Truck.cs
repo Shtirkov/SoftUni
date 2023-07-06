@@ -8,15 +8,6 @@
              : base(fuelQuantity, fuelConsumption + _fuelConsumedByTheAC, tankCapacity)
         {}
 
-        public override void Refuel(double liters)
-        {
-            var previousFuelQuantity = FuelQuantity;
-            base.Refuel(liters);
-
-            if (previousFuelQuantity != FuelQuantity)
-            {
-                FuelQuantity = FuelQuantity * 0.95;
-            }
-        }
+        public override void Refuel(double liters) => base.Refuel(liters * 0.95);
     }
 }

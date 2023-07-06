@@ -13,8 +13,7 @@
 
         public override string Drive(double distance)
         {
-            FuelConsumption = _initialFuelConsumption;
-            FuelConsumption += _fuelConsumedByTheAC;
+            FuelConsumption = _initialFuelConsumption + _fuelConsumedByTheAC;
             return base.Drive(distance);
         }
 

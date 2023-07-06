@@ -43,20 +43,17 @@
 
         public virtual string Drive(double distance)
         {
-            var output = "";
             var requiredFuelForTheDrive = FuelConsumption * distance;
 
             if (FuelQuantity > requiredFuelForTheDrive)
             {
                 FuelQuantity -= requiredFuelForTheDrive;
-                output = string.Format(_traveledDistanceMessage, GetType().Name, distance);
+                return string.Format(_traveledDistanceMessage, GetType().Name, distance);
             }
             else
             {
-                output = string.Format(_vehicleNeedsRefuelingMessage, GetType().Name);
+                return string.Format(_vehicleNeedsRefuelingMessage, GetType().Name);
             }
-
-            return output;
         }
 
         public string GetRemainingFuel() => $"{GetType().Name}: {FuelQuantity:f2}";

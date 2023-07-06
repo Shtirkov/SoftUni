@@ -6,6 +6,12 @@
         private const string VehicleNeedsRefuelingMessage = "{0} needs refueling";
         private const string NotEnoughTankSpaceMessage = "Cannot fit {0} fuel in the tank";
         private const string NegativeFuelMessage = "Fuel must be a positive number";
+        private const string NegativeFuelConsumptionMessage = "Fuel consumption can not be negative";
+        private const string NegativeTankCapacity = "Tank capacity can not be 0 or negative";
+
+        private double _fuelQuantity;
+        private double _fuelConsumption;
+        private double _tankCapacity;
 
         public Vehicle(double fuelQuantity, double fuelConsumption, double tankCapacity)
         {
@@ -19,11 +25,47 @@
             TankCapacity = tankCapacity;
         }
 
-        protected double FuelQuantity { get; set; }
+        protected double FuelQuantity
+        {
+            get => _fuelQuantity;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException(NegativeFuelMessage);
+                }
 
-        protected double FuelConsumption { get; set; }
+                _fuelQuantity = value;
+            }
+        }
 
-        protected double TankCapacity { get; private set; }       
+        protected double FuelConsumption
+        {
+            get => _fuelConsumption;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException(NegativeFuelConsumptionMessage);
+                }
+
+                _fuelConsumption = value;
+            }
+        }
+
+        protected double TankCapacity
+        {
+            get => _tankCapacity;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException(NegativeTankCapacity);
+                }
+
+                _tankCapacity = value;
+            }
+        }
 
         public virtual void Refuel(double liters)
         {

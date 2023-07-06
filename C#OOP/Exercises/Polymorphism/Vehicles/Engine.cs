@@ -21,7 +21,7 @@ namespace Vehicles
 
             for (int i = 0; i < numberOfTrips; i++)
             {
-                var commandInfo = Console.ReadLine().Split();
+                var commandInfo = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 var actionToPerform = commandInfo[0];
                 var vehicleType = commandInfo[1];
                 Vehicle vehicle = null;
@@ -63,7 +63,7 @@ namespace Vehicles
 
         private void CreateVehicle()
         {
-            var vehicleInfo = Console.ReadLine().Split();
+            var vehicleInfo = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
             var vehicleType = vehicleInfo[0];
             var vehicleFuelQuantity = double.Parse(vehicleInfo[1]);
             var vehicleFuelConsumption = double.Parse(vehicleInfo[2]);

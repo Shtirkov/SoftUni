@@ -8,6 +8,7 @@
         private const string NegativeFuelMessage = "Fuel must be a positive number";
         private const string NegativeFuelConsumptionMessage = "Fuel consumption can not be negative";
         private const string NegativeTankCapacity = "Tank capacity can not be 0 or negative";
+        private const string NegativeDistanceMessage = "Distance can not be negative";
 
         private double _fuelQuantity;
         private double _fuelConsumption;
@@ -69,13 +70,13 @@
 
         public virtual void Refuel(double liters)
         {
-            if (liters <= 0)
-            {
-                Console.WriteLine(NegativeFuelMessage);
-            }
-            else if (TankCapacity - FuelQuantity < liters)
+            if (TankCapacity - FuelQuantity < liters)
             {
                 Console.WriteLine(NotEnoughTankSpaceMessage, liters);
+            }
+            else if (liters <= 0)
+            {
+                Console.WriteLine(NegativeFuelMessage);
             }
             else
             {
@@ -87,7 +88,11 @@
         {
             var requiredFuelForTheDrive = FuelConsumption * distance;
 
-            if (FuelQuantity > requiredFuelForTheDrive)
+            if (distance < 0)
+            {
+                return NegativeDistanceMessage;
+            }
+            else if (FuelQuantity >= requiredFuelForTheDrive)
             {
                 FuelQuantity -= requiredFuelForTheDrive;
                 return string.Format(TraveledDistanceMessage, GetType().Name, distance);

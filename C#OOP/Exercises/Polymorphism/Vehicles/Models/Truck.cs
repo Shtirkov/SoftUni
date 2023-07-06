@@ -9,7 +9,7 @@
         { }
 
         public override void Refuel(double liters)
-        {
+         {
             var previousFuelQuantity = FuelQuantity;
             base.Refuel(liters);
 

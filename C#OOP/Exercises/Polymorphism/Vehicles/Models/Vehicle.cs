@@ -4,20 +4,45 @@
     {
         private const string _traveledDistanceMessage = "{0} travelled {1} km";
         private const string _vehicleNeedsRefuelingMessage = "{0} needs refueling";
+        private const string _notEnoughTankSpaceMessage = "Cannot fit {0} fuel in the tank";
+        private const string _negativeFuelMessage = "Fuel must be a positive number";
 
-        public Vehicle(double fuelQuantity, double fuelConsumption)
+        public Vehicle(double fuelQuantity, double fuelConsumption, double tankCapacity)
         {
+            if (fuelQuantity > tankCapacity)
+            {
+                fuelQuantity = 0;
+            }
+
             FuelQuantity = fuelQuantity;
             FuelConsumption = fuelConsumption;
+            TankCapacity = tankCapacity;
         }
 
-        public double FuelQuantity { get; set; }
+        protected double FuelQuantity { get; set; }
 
-        public double FuelConsumption { get; set; }
+        protected double FuelConsumption { get; set; }
 
-        public abstract void Refuel(double liters);
+        protected double TankCapacity { get; private set; }       
 
-        public string Drive(double distance)
+        public virtual void Refuel(double liters)
+        {
+            if (liters <= 0)
+            {
+                Console.WriteLine(_negativeFuelMessage);
+            }
+            else if (TankCapacity < FuelQuantity + liters)
+            {
+                Console.WriteLine(_notEnoughTankSpaceMessage, liters);
+            }
+            else
+            {
+                FuelQuantity += liters;
+                TankCapacity -= liters;
+            }
+        }
+
+        public virtual string Drive(double distance)
         {
             var output = "";
             var requiredFuelForTheDrive = FuelConsumption * distance;

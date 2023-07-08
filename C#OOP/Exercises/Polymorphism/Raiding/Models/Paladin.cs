@@ -1,4 +1,6 @@
-﻿namespace Raiding.Models
+﻿using Raiding.Common;
+
+namespace Raiding.Models
 {
     public class Paladin : Hero
     {

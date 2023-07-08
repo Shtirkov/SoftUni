@@ -1,4 +1,6 @@
-﻿using Raiding.Core.Interfaces;
+﻿using Raiding.Common;
+using Raiding.Core.Interfaces;
+using Raiding.Factories;
 using Raiding.Models;
 
 namespace Raiding.Core
@@ -6,10 +8,12 @@ namespace Raiding.Core
     public class Engine : IEngine
     {
         private List<Hero> _heroes;
+        private HeroFactory _heroFactory;
 
         public Engine()
         {
             _heroes = new List<Hero>();
+            _heroFactory = new HeroFactory();
         }
 
         public void Start()
@@ -18,27 +22,21 @@ namespace Raiding.Core
 
             while (_heroes.Count < requiredHeroes)
             {
-
-                var hero = CreateHero();
+                var heroName = Console.ReadLine();
+                var heroType = Console.ReadLine();
+                var hero = _heroFactory.CreateHero(heroType, heroName);
 
                 if (hero != null)
                 {
                     _heroes.Add(hero);
                 }
+                else
+                {
+                    Console.WriteLine(Constants.InvalidHeroExceptionMessage);
+                }
             }
 
-            FightTheBoss(_heroes);
-        }
-
-        private void FightTheBoss(List<Hero> heroes)
-        {
-            var bossHealth = int.Parse(Console.ReadLine());
-
-            heroes.ForEach(hero =>
-            {
-                Console.WriteLine(hero.CastAbility());
-                bossHealth -= hero.Power;
-            });
+            var bossHealth = FightTheBoss(_heroes);
 
             if (bossHealth > 0)
             {
@@ -50,32 +48,17 @@ namespace Raiding.Core
             }
         }
 
-        private Hero CreateHero()
+        private int FightTheBoss(List<Hero> heroes)
         {
-            var heroName = Console.ReadLine();
-            var heroType = Console.ReadLine();
+            var bossHealth = int.Parse(Console.ReadLine());
 
-            if (heroType == "Druid")
+            heroes.ForEach(hero =>
             {
-                return new Druid(heroName);
-            }
-            else if (heroType == "Paladin")
-            {
-                return new Paladin(heroName);
-            }
-            else if (heroType == "Rogue")
-            {
-                return new Rogue(heroName);
-            }
-            else if (heroType == "Warrior")
-            {
-                return new Warrior(heroName);
-            }
-            else
-            {
-                Console.WriteLine(Constants.InvalidHeroExceptionMessage);
-                return null;
-            }
+                Console.WriteLine(hero.CastAbility());
+                bossHealth -= hero.Power;
+            });
+
+            return bossHealth;
         }
     }
 }

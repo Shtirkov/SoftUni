@@ -1,4 +1,4 @@
-﻿namespace Raiding
+﻿namespace Raiding.Common
 {
     public static class Constants
     {

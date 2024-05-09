@@ -1,14 +1,12 @@
 function extractSubset(numbers) {
-    const output = [numbers[0]];
-
-    for (let i = 1; i < numbers.length; i++) {
-
-        if (numbers[i] >= output[output.length - 1]) {
-            output.push(numbers[i]);
+    let biggest = Number.MIN_SAFE_INTEGER;
+    return numbers.filter(number => {
+        if (number >= biggest) {
+            biggest = number;
+            return true;
         }
-    }
-
-    return output;
+        return false;
+    });
 }
 
 console.log(extractSubset([1,

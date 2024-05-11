@@ -9,7 +9,7 @@ function spiralMatrix(rows, cols) {
         matrix.push(Array(cols).fill('a'));
     }
 
-    for (let row = 0; row < rows * cols; row++) {
+    for (let i = 0; i < rows * cols; i++) {
 
         while (currentRowIndex < rows && currentColIndex < cols && matrix[currentRowIndex][currentColIndex] == 'a') {
             switch (direction) {
